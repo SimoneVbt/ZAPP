@@ -6,8 +6,10 @@ use App\Repository\ZorgmomentRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiResource;
 
 /**
+ * @ApiResource
  * @ORM\Entity(repositoryClass=ZorgmomentRepository::class)
  */
 class Zorgmoment

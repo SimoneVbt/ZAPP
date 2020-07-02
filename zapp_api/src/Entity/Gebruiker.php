@@ -7,8 +7,10 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use ApiPlatform\Core\Annotation\ApiResource;
 
 /**
+ * @ApiResource
  * @ORM\Entity(repositoryClass=GebruikerRepository::class)
  */
 class Gebruiker implements UserInterface
@@ -37,7 +39,7 @@ class Gebruiker implements UserInterface
     private $password;
 
     /**
-     * @ORM\OneToMany(targetEntity=Zorgmoment::class, mappedBy="Gebruiker")
+     * @ORM\OneToMany(targetEntity=Zorgmoment::class, mappedBy="gebruiker")
      */
     private $zorgmomenten;
 
