@@ -9,7 +9,12 @@ use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-
+/**
+ * @method Gebruiker|null find($id, $lockMode = null, $lockVersion = null)
+ * @method Gebruiker|null findOneBy(array $criteria, array $orderBy = null)
+ * @method Gebruiker[]    findAll()
+ * @method Gebruiker[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ */
 class GebruikerRepository extends ServiceEntityRepository implements PasswordUpgraderInterface
 {
     public function __construct(ManagerRegistry $registry)
