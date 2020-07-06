@@ -19,32 +19,14 @@ class ZorgmomentRepository extends ServiceEntityRepository
         parent::__construct($registry, Zorgmoment::class);
     }
 
-    // /**
-    //  * @return Zorgmoment[] Returns an array of Zorgmoment objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('z')
-            ->andWhere('z.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('z.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Zorgmoment
-    {
-        return $this->createQueryBuilder('z')
-            ->andWhere('z.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
+    // public function getAllZorgmomentenByUserId($user_id)
+    // {
+    //     $zorgmomenten = $this->createQueryBuilder("z")
+    //                     ->where("z.gebruiker_id = $user_id")
+    //                     ->orderBy("z.datum_tijd", "DESC")
+    //                     ->setMaxResults(20)
+    //                     ->getQuery()
+    //                     ->getResult();
+    //     return $zorgmomenten;
+    // }
 }

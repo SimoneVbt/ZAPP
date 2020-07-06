@@ -22,6 +22,11 @@ class GebruikerRepository extends ServiceEntityRepository implements PasswordUpg
         parent::__construct($registry, Gebruiker::class);
     }
 
+    public function findUserById($id) 
+    {
+        return $this->find($id);
+    }
+
     /**
      * Used to upgrade (rehash) the user's password automatically over time.
      */
