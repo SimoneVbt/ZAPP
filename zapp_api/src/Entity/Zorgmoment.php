@@ -70,7 +70,7 @@ class Zorgmoment
 
     public function getGebruiker(): ?Gebruiker
     {
-        return $this->Gebruiker;
+        return $this->gebruiker;
     }
 
     public function setGebruiker(?Gebruiker $gebruiker): self

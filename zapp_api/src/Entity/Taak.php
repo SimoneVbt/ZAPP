@@ -35,6 +35,11 @@ class Taak
      */
     private $voltooid;
 
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $stap;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -72,6 +77,18 @@ class Taak
     public function setVoltooid(?bool $voltooid): self
     {
         $this->voltooid = $voltooid;
+
+        return $this;
+    }
+
+    public function getStap(): ?int
+    {
+        return $this->stap;
+    }
+
+    public function setStap(int $stap): self
+    {
+        $this->stap = $stap;
 
         return $this;
     }
