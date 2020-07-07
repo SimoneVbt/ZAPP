@@ -14,7 +14,7 @@ namespace ZAPP
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
-            Database db = new Database(this);
+            // Database db = new Database(this);
             StartActivity(typeof(Home));
         }
     }

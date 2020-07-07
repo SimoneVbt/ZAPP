@@ -20,8 +20,7 @@ class Zorgmoment
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Gebruiker::class, inversedBy="zorgmomenten")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\Column(type="integer")
      */
     private $gebruiker;
 
@@ -68,7 +67,7 @@ class Zorgmoment
 
     public function getGebruiker(): ?Gebruiker
     {
-        return $this->Gebruiker;
+        return $this->gebruiker;
     }
 
     public function setGebruiker(?Gebruiker $gebruiker): self

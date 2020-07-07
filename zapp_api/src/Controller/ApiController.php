@@ -4,8 +4,10 @@ namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+
 use App\Service\GebruikerService;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 
 /**
@@ -22,16 +24,30 @@ class ApiController extends AbstractController
 
 
     /**
-     * @Route("/{user_id}", name="get_user")
-     * @Template()
+     * @Route("/gebruiker/{user_id}", name="get_user")
      */
     public function findUserById($user_id)
     {
         $user = $this->gs->findUserById($user_id);
-        $collectie = $user->getZorgmomenten();
-        dump($collectie);
+        $momenten = $user->getZorgmomenten();
+
+        foreach ($momenten as $moment) {
+            $result[] = $moment;
+        }
         
-        die();
-        // return $this->json($user);
-    }
+        // foreach ($momenten as $moment) {
+        //     $client = $moment->getClient()->getId();
+
+        //     $taken = $moment->getTaken();
+        //     foreach ($taken as $taak) {
+        //         $taak_id = $taak->getId();
+        //     }
+        //     // $result = $c->getDatumTijd();
+        //     // $array[] = $result;
+        // }
+        // dump($user);
+        // die();
+        
+        return $this->json($result);
+    }    
 }

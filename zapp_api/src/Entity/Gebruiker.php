@@ -37,7 +37,7 @@ class Gebruiker implements UserInterface
     private $password;
 
     /**
-     * @ORM\OneToMany(targetEntity=Zorgmoment::class, mappedBy="Gebruiker")
+     * @ORM\OneToMany(targetEntity=Zorgmoment::class, mappedBy="gebruiker")
      */
     private $zorgmomenten;
 

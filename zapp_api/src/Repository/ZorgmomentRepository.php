@@ -18,15 +18,9 @@ class ZorgmomentRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Zorgmoment::class);
     }
-
-    // public function getAllZorgmomentenByUserId($user_id)
-    // {
-    //     $zorgmomenten = $this->createQueryBuilder("z")
-    //                     ->where("z.gebruiker_id = $user_id")
-    //                     ->orderBy("z.datum_tijd", "DESC")
-    //                     ->setMaxResults(20)
-    //                     ->getQuery()
-    //                     ->getResult();
-    //     return $zorgmomenten;
-    // }
+    
+    public function getZorgmomentById()
+    {
+        //...
+    }
 }
