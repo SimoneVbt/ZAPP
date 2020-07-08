@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\GebruikerRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -35,16 +33,6 @@ class Gebruiker implements UserInterface
      * @ORM\Column(type="string")
      */
     private $password;
-
-    /**
-     * @ORM\OneToMany(targetEntity=Zorgmoment::class, mappedBy="gebruiker")
-     */
-    private $zorgmomenten;
-
-    public function __construct()
-    {
-        $this->zorgmomenten = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
@@ -122,36 +110,5 @@ class Gebruiker implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
-    }
-
-    /**
-     * @return Collection|Zorgmoment[]
-     */
-    public function getZorgmomenten(): Collection
-    {
-        return $this->zorgmomenten;
-    }
-
-    public function addZorgmomenten(Zorgmoment $zorgmomenten): self
-    {
-        if (!$this->zorgmomenten->contains($zorgmomenten)) {
-            $this->zorgmomenten[] = $zorgmomenten;
-            $zorgmomenten->setGebruiker($this);
-        }
-
-        return $this;
-    }
-
-    public function removeZorgmomenten(Zorgmoment $zorgmomenten): self
-    {
-        if ($this->zorgmomenten->contains($zorgmomenten)) {
-            $this->zorgmomenten->removeElement($zorgmomenten);
-            // set the owning side to null (unless already changed)
-            if ($zorgmomenten->getGebruiker() === $this) {
-                $zorgmomenten->setGebruiker(null);
-            }
-        }
-
-        return $this;
     }
 }

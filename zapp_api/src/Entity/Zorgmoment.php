@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\ZorgmomentRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -22,13 +20,12 @@ class Zorgmoment
     /**
      * @ORM\Column(type="integer")
      */
-    private $gebruiker;
+    private $gebruiker_id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Client::class, inversedBy="zorgmomenten")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\Column(type="integer")
      */
-    private $client;
+    private $client_id;
 
     /**
      * @ORM\Column(type="datetime")
@@ -50,41 +47,31 @@ class Zorgmoment
      */
     private $opmerkingen;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Taak::class, mappedBy="zorgmoment")
-     */
-    private $taken;
-
-    public function __construct()
-    {
-        $this->taken = new ArrayCollection();
-    }
-
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getGebruiker(): ?Gebruiker
+    public function getGebruikerId(): ?int
     {
-        return $this->gebruiker;
+        return $this->gebruiker_id;
     }
 
-    public function setGebruiker(?Gebruiker $gebruiker): self
+    public function setGebruikerId(int $gebruiker_id): self
     {
-        $this->gebruiker = $gebruiker;
+        $this->gebruiker_id = $gebruiker_id;
 
         return $this;
     }
 
-    public function getClient(): ?Client
+    public function getClientId(): ?int
     {
-        return $this->client;
+        return $this->client_id;
     }
 
-    public function setClient(?Client $client): self
+    public function setClientId(int $client_id): self
     {
-        $this->client = $client;
+        $this->client_id = $client_id;
 
         return $this;
     }
@@ -133,37 +120,6 @@ class Zorgmoment
     public function setOpmerkingen(?string $opmerkingen): self
     {
         $this->opmerkingen = $opmerkingen;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Taak[]
-     */
-    public function getTaken(): Collection
-    {
-        return $this->taken;
-    }
-
-    public function addTaken(Taak $taken): self
-    {
-        if (!$this->taken->contains($taken)) {
-            $this->taken[] = $taken;
-            $taken->setZorgmoment($this);
-        }
-
-        return $this;
-    }
-
-    public function removeTaken(Taak $taken): self
-    {
-        if ($this->taken->contains($taken)) {
-            $this->taken->removeElement($taken);
-            // set the owning side to null (unless already changed)
-            if ($taken->getZorgmoment() === $this) {
-                $taken->setZorgmoment(null);
-            }
-        }
 
         return $this;
     }

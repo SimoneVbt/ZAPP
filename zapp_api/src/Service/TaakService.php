@@ -16,8 +16,15 @@ class TaakService
         $this->rep = $em->getRepository(Taak::Class);
     }
 
+
     public function getTakenByZorgmoment($moment_id)
     {
         return $this->rep->getTakenByZorgmoment($moment_id);
+    }
+
+
+    public function updateTaak($params)
+    {
+        return $this->rep->updateTaak($params);
     }
 }

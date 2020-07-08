@@ -18,10 +18,14 @@ class Taak
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Zorgmoment::class, inversedBy="taken")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\Column(type="integer")
      */
-    private $zorgmoment;
+    private $zorgmoment_id;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $stap;
 
     /**
      * @ORM\Column(type="string", length=30)
@@ -33,24 +37,31 @@ class Taak
      */
     private $voltooid;
 
-    /**
-     * @ORM\Column(type="integer")
-     */
-    private $stap;
-
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getZorgmoment(): ?Zorgmoment
+    public function getZorgmomentId(): ?int
     {
-        return $this->zorgmoment;
+        return $this->zorgmoment_id;
     }
 
-    public function setZorgmoment(?Zorgmoment $zorgmoment): self
+    public function setZorgmomentId(int $zorgmoment_id): self
     {
-        $this->zorgmoment = $zorgmoment;
+        $this->zorgmoment_id = $zorgmoment_id;
+
+        return $this;
+    }
+
+    public function getStap(): ?int
+    {
+        return $this->stap;
+    }
+
+    public function setStap(int $stap): self
+    {
+        $this->stap = $stap;
 
         return $this;
     }
@@ -72,21 +83,9 @@ class Taak
         return $this->voltooid;
     }
 
-    public function setVoltooid(?bool $voltooid): self
+    public function setVoltooid(bool $voltooid): self
     {
         $this->voltooid = $voltooid;
-
-        return $this;
-    }
-
-    public function getStap(): ?int
-    {
-        return $this->stap;
-    }
-
-    public function setStap(int $stap): self
-    {
-        $this->stap = $stap;
 
         return $this;
     }

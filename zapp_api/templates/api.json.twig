@@ -1,0 +1,47 @@
+[
+{% for moment in data %}
+{
+    "moment": {
+        "id": {{ moment.moment.id }},
+        "datumTijd": "{{ moment.moment.datumTijd|date("d-m-Y H:i", "Europe/Amsterdam") }}",
+        "opmerkingen": "{{ moment.moment.opmerkingen }}",
+        "aanwezigheid_begin": "{{ moment.moment.aanwezigheidBegin }}",
+        "aanwezigheid_eind": "{{ moment.moment.aanwezigheidEind }}"
+    },
+
+    "client": {
+        "id": {{ moment.client.id }},
+        "achternaam": "{{ moment.client.achternaam }}",
+        "voornaam": "{{ moment.client.voornaam }}",
+        "adres": "{{ moment.client.adres }}",
+        "postcode": "{{ moment.client.postcode }}",
+        "woonplaats": "{{ moment.client.woonplaats }}",
+        "telefoonnummer": "{{ moment.client.telefoonnummer }}"
+
+    },
+
+    "taken": [
+        {% for taak in moment.taken %}
+
+        {
+            "id": {{ taak.id }},
+            "stap": {{ taak.stap }},
+            "omschrijving": "{{ taak.omschrijving }}",
+            {% if taak.voltooid %}
+            "voltooid": true
+            {% else %}
+            "voltooid": false
+            {% endif %}
+            
+        {% if loop.last %} }
+                {% else %} },
+                {% endif %}
+
+        {% endfor %}
+    ]
+
+{% if loop.last %} }
+        {% else %} },
+        {% endif %}
+{% endfor %}
+]
