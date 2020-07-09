@@ -126,8 +126,8 @@ public final class R {
 		public static final int status_bar_notification_info_maxnum = 0x7f09000e;
 	}
 	public static final class layout {
-		public static final int browser_actions_context_menu_page = 0x7f0b001c;
-		public static final int browser_actions_context_menu_row = 0x7f0b001d;
+		public static final int browser_actions_context_menu_page = 0x7f0b001d;
+		public static final int browser_actions_context_menu_row = 0x7f0b001e;
 		public static final int notification_action = 0x7f0b002f;
 		public static final int notification_action_tombstone = 0x7f0b0030;
 		public static final int notification_template_custom_big = 0x7f0b0031;
@@ -136,7 +136,7 @@ public final class R {
 		public static final int notification_template_part_time = 0x7f0b0034;
 	}
 	public static final class string {
-		public static final int status_bar_notification_info_overflow = 0x7f0d003b;
+		public static final int status_bar_notification_info_overflow = 0x7f0d0037;
 	}
 	public static final class style {
 		public static final int TextAppearance_Compat_Notification = 0x7f0e0115;
