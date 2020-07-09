@@ -49,7 +49,7 @@ class ZorgmomentController extends AbstractController
      */
     public function updateZorgmoment($moment_id)
     {
-        $params = $request->request->all(); // werkt niet via postman
+        $params = $request->request->all();
         $params["id"] = $moment_id;
 
         $result = $this->zs->updateZorgmoment($params);
@@ -65,7 +65,7 @@ class ZorgmomentController extends AbstractController
      */
     public function createZorgmoment(Request $request)
     {        
-        $params = $request->request->all(); // werkt niet via postman
+        $params = $request->request->all();
 
         $available = $this->zs->checkBeschikbaarheid($params);
         if ($available) {

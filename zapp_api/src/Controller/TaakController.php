@@ -27,7 +27,7 @@ class TaakController extends AbstractController
      */
     public function updateTaak($taak_id)
     {
-        $params = $request->request->all(); //werkt niet in postman
+        $params = $request->request->all();
         $params["id"] = $taak_id;
 
         $result = $this->ts->updateTaak($params);

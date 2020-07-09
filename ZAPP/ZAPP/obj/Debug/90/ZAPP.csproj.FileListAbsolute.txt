@@ -259,3 +259,11 @@ D:\werk_educom\ZAPP\ZAPP\ZAPP\obj\Debug\90\stamp\_ConvertResourcesCases.stamp
 D:\werk_educom\ZAPP\ZAPP\ZAPP\obj\Debug\90\stamp\_GenerateJavaStubs.stamp
 D:\werk_educom\ZAPP\ZAPP\ZAPP\obj\Debug\90\stamp\_GeneratePackageManagerJava.stamp
 D:\werk_educom\ZAPP\ZAPP\ZAPP\obj\Debug\90\stamp\_ResolveLibraryProjectImports.stamp
+D:\werk_educom\ZAPP\ZAPP\ZAPP\obj\Debug\90\android\assets\Mono.Data.Sqlite.dll
+D:\werk_educom\ZAPP\ZAPP\ZAPP\obj\Debug\90\android\assets\Mono.Data.Sqlite.dll.config
+D:\werk_educom\ZAPP\ZAPP\ZAPP\obj\Debug\90\android\assets\Mono.Data.Sqlite.pdb
+D:\werk_educom\ZAPP\ZAPP\ZAPP\obj\Debug\90\android\assets\System.Data.dll
+D:\werk_educom\ZAPP\ZAPP\ZAPP\obj\Debug\90\android\assets\System.Data.pdb
+D:\werk_educom\ZAPP\ZAPP\ZAPP\obj\Debug\90\android\assets\System.Transactions.dll
+D:\werk_educom\ZAPP\ZAPP\ZAPP\obj\Debug\90\android\assets\System.Transactions.pdb
+D:\werk_educom\ZAPP\ZAPP\ZAPP\obj\Debug\90\stamp\_CopyConfigFiles.stamp

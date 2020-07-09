@@ -35,6 +35,7 @@ class GebruikerRepository extends ServiceEntityRepository implements PasswordUpg
     public function login($params)
     {
         $success = $this->createQueryBuilder("g")
+                    ->select("g.id")
                     ->where("g.gebruikersnaam = :gebruikersnaam")
                     ->andWhere("g.password = :wachtwoord")
                     ->setParameter("gebruikersnaam", $params["gebruikersnaam"])
@@ -42,6 +43,7 @@ class GebruikerRepository extends ServiceEntityRepository implements PasswordUpg
                     ->getQuery()
                     ->getResult()
                     ;
-        return $success ? true : false;
+        
+        return $success ? $success : null;
     }
 }

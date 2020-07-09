@@ -3,10 +3,18 @@
 {
     "moment": {
         "id": {{ moment.moment.id }},
-        "datumTijd": "{{ moment.moment.datumTijd|date("d-m-Y H:i", "Europe/Amsterdam") }}",
+        "datum_tijd": "{{ moment.moment.datumTijd|date("d-m-Y H:i", "Europe/Amsterdam") }}",
         "opmerkingen": "{{ moment.moment.opmerkingen }}",
-        "aanwezigheid_begin": "{{ moment.moment.aanwezigheidBegin }}",
-        "aanwezigheid_eind": "{{ moment.moment.aanwezigheidEind }}"
+        {% if moment.moment.aanwezigheidBegin %}
+        "aanwezigheid_begin": "{{ moment.moment.aanwezigheidBegin|date("d-m-Y H:i", "Europe/Amsterdam") }}",
+        {% else %}
+        "aanwezigheid_begin": null,
+        {% endif %}
+        {% if moment.moment.aanwezigheidEind %}
+        "aanwezigheid_eind": "{{ moment.moment.aanwezigheidEind|date("d-m-Y H:i", "Europe/Amsterdam") }}"
+        {% else %}
+        "aanwezigheid_eind": null
+        {% endif %}
     },
 
     "client": {

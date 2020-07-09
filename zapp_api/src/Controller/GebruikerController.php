@@ -28,11 +28,12 @@ class GebruikerController extends AbstractController
      */
     public function login(Request $request)
     {
-        $params = $request->request->all(); //werkt niet met postman
-
+        $params = $request->request->all();
         $result = $this->gs->login($params);
+
         if ($result) {
-            return new Response("Inloggen geslaagd");
+            $id = $result[0]["id"];
+            return new Response("$id");
         }
         return new Response("Foutieve gebruikersnaam en/of wachtwoord");
     }

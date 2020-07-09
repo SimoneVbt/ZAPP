@@ -17,7 +17,8 @@ namespace ZAPP
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
-            Thread.Sleep(1000);
+            Database db = new Database(this);
+            db.DownloadData();
             StartActivity(typeof(Home));
         }
     }
