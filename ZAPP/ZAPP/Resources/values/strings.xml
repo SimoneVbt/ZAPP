@@ -1,22 +1,24 @@
 <resources>
 	
-    <string name="app_version">0.02</string>
+    <string name="app_version">0.05</string>
     <string name="app_name">ZAPP</string>
 
 	<string name="create_table_gebruiker">
 		CREATE TABLE gebruiker
-		(id INTEGER)
+		(id INTEGER NOT NULL,
+		gebruikersnaam VARCHAR(30) NOT NULL)
 	</string>
-	<string name="create_table_zorgmoment">
+	<string name="create_table_taak">
 		CREATE TABLE taak
-		(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+		(id INTEGER NOT NULL,
 		zorgmoment_id INTEGER NOT NULL,
+		stap INTEGER NOT NULL,
 		omschrijving VARCHAR(30) NOT NULL,
 		voltooid TINYINT(1) DEFAULT NULL)
 	</string>	
 	<string name="create_table_client">
 		CREATE TABLE client
-		(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+		(id INTEGER NOT NULL,
 		achternaam VARCHAR(30) NOT NULL,
 		voornaam VARCHAR(30) NOT NULL,
 		adres VARCHAR(50) NOT NULL,
@@ -24,10 +26,9 @@
 		woonplaats VARCHAR(50) NOT NULL,
 		telefoonnummer VARCHAR(20) DEFAULT NULL)
 	</string>
-	<string name="create_table_taak">
+	<string name="create_table_zorgmoment">
 		CREATE TABLE zorgmoment
-		(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-		gebruiker_id INTEGER NOT NULL,
+		(id INTEGER NOT NULL,
 		client_id INTEGER NOT NULL,
 		datum_tijd DATETIME NOT NULL,
 		aanwezigheid_begin DATETIME DEFAULT NULL,

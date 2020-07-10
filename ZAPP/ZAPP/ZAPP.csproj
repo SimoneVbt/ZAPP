@@ -64,9 +64,16 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Database.cs" />
-    <Compile Include="Home.cs" />
-    <Compile Include="SplashActivity.cs" />
+    <Compile Include="HomeListViewAdapter.cs" />
+    <Compile Include="Library\ClientRecord.cs" />
+    <Compile Include="Library\Database.cs" />
+    <Compile Include="Activities\Home.cs" />
+    <Compile Include="Activities\SplashActivity.cs" />
+    <Compile Include="Library\GebruikerRecord.cs" />
+    <Compile Include="Library\ListClientRecord.cs" />
+    <Compile Include="Library\ListZorgmomentRecord.cs" />
+    <Compile Include="Library\TaakRecord.cs" />
+    <Compile Include="Library\ZorgmomentRecord.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -76,7 +83,7 @@
     <None Include="Assets\AboutAssets.txt" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\activity_main.xml">
+    <AndroidResource Include="Resources\layout\Home.xml">
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\values\colors.xml" />
@@ -112,6 +119,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\splash.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\ListRow.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

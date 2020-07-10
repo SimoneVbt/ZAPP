@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\werk_educom\\ZAPP\\ZAPP\\ZAPP\\ZAPP.csproj": {}
+    "D:\\xampp\\htdocs\\ZAPP\\ZAPP\\ZAPP\\ZAPP.csproj": {}
   },
   "projects": {
-    "D:\\werk_educom\\ZAPP\\ZAPP\\ZAPP\\ZAPP.csproj": {
+    "D:\\xampp\\htdocs\\ZAPP\\ZAPP\\ZAPP\\ZAPP.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\werk_educom\\ZAPP\\ZAPP\\ZAPP\\ZAPP.csproj",
+        "projectUniqueName": "D:\\xampp\\htdocs\\ZAPP\\ZAPP\\ZAPP\\ZAPP.csproj",
         "projectName": "ZAPP",
-        "projectPath": "D:\\werk_educom\\ZAPP\\ZAPP\\ZAPP\\ZAPP.csproj",
+        "projectPath": "D:\\xampp\\htdocs\\ZAPP\\ZAPP\\ZAPP\\ZAPP.csproj",
         "packagesPath": "C:\\Users\\simon\\.nuget\\packages\\",
-        "outputPath": "D:\\werk_educom\\ZAPP\\ZAPP\\ZAPP\\obj\\",
+        "outputPath": "D:\\xampp\\htdocs\\ZAPP\\ZAPP\\ZAPP\\obj\\",
         "projectStyle": "PackageReference",
         "skipContentFileWrite": true,
         "fallbackFolders": [
