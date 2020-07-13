@@ -24,7 +24,7 @@ namespace ZAPP
         private readonly Context context;
         private readonly string dbpath;
         private readonly string connectionString;
-        private readonly string url = "http://192.168.0.105/zapp/zapp_api/public/index.php/api/zorgmoment/get/1";
+        private readonly string url = "http://192.168.1.244/zapp/zapp_api/public/index.php/api/zorgmoment/get/1";
 
         public Database(Context context)
         {
@@ -37,8 +37,6 @@ namespace ZAPP
 
             dbpath = Path.Combine(documentsPath, dbname);
             connectionString = $"Data Source={dbpath};Version=3;";
-
-            CreateDatabase();
         }
 
         public void CreateDatabase()
@@ -89,6 +87,11 @@ namespace ZAPP
                     InsertClientData(clientRecord);
                     ZorgmomentRecord momentRecord = new ZorgmomentRecord(result);
                     InsertZorgmomenten(momentRecord);
+                    foreach (JsonObject taak in result["taken"])
+                    {
+                        TaakRecord taakRecord = new TaakRecord(taak);
+                        InsertTaken(taakRecord);
+                    }
                 }
 
             }
@@ -119,46 +122,81 @@ namespace ZAPP
             return false;
         }
 
-        //----------------ZORGMOMENT TABLE----------------
+        //----------------TAAK TABLE----------------
 
-        public void InsertZorgmomenten(ZorgmomentRecord record)
+        public void InsertTaken(TaakRecord record)
         {
-            var check = CheckRecord(record.id.ToString(), "zorgmoment");
+            var check = CheckRecord(record.id.ToString(), "taak");
 
-            if (check == false)
+            var conn = new SqliteConnection(connectionString);
+            conn.Open();
+
+            var cmd = conn.CreateCommand();
+            if (check)
             {
-                var conn = new SqliteConnection(connectionString);
-
-                conn.Open();
-
-                var cmd = conn.CreateCommand();
-                cmd.CommandText = "insert into zorgmoment (id, client_id, datum_tijd, opmerkingen, aanwezigheid_begin, aanwezigheid_eind) " +
-                    $"values ({record.id}, {record.client_id}, '{record.datum_tijd}', '{record.opmerkingen}', '{record.aanwezigheid_begin}', '{record.aanwezigheid_eind}')";
-                cmd.CommandType = CommandType.Text;
-                cmd.ExecuteNonQuery();
-
-                Console.WriteLine("Record toegevoegd: moment " + record.id + " voor cliënt " + record.client_id);
-
-                conn.Close();
+                cmd.CommandText = "UPDATE taak " +
+                    $"SET zorgmoment_id = {record.zorgmoment_id}, stap = {record.stap}, omschrijving = '{record.omschrijving}', stap = {record.stap} " +
+                    $"WHERE id = {record.id}";
             }
+            else
+            {
+                cmd.CommandText = "INSERT INTO taak (id, zorgmoment_id, stap, omschrijving, voltooid) " +
+                    $"VALUES ({record.id}, {record.zorgmoment_id}, {record.stap}, '{record.omschrijving}', {record.voltooid})";
+            }
+            cmd.CommandType = CommandType.Text;
+            cmd.ExecuteNonQuery();
+
+            conn.Close();
         }
 
-        public ZorgmomentRecord GetZorgmomentRecordById(string id)
+        public ArrayList GetTakenByZorgmoment(string moment_id)
         {
             var conn = new SqliteConnection(connectionString);
 
             conn.Open();
 
             var cmd = conn.CreateCommand();
-            cmd.CommandText = $"SELECT * FROM zorgmoment WHERE id = {id}";
+            cmd.CommandText = $"SELECT * FROM taak WHERE zorgmoment_id = {moment_id}";
             cmd.CommandType = CommandType.Text;
             SqliteDataReader reader = cmd.ExecuteReader();
 
-            ZorgmomentRecord record = new ZorgmomentRecord(reader);
+            ArrayList taakRecords = new ArrayList();
+            while (reader.Read())
+            {
+                TaakRecord row = new TaakRecord(reader);
+                taakRecords.Add(row);
+            }
 
             conn.Close();
 
-            return record;
+            return taakRecords;
+        }
+
+        //----------------ZORGMOMENT TABLE----------------
+
+        public void InsertZorgmomenten(ZorgmomentRecord record)
+        {
+            var check = CheckRecord(record.id.ToString(), "zorgmoment");
+
+            var conn = new SqliteConnection(connectionString);
+            conn.Open();
+
+            var cmd = conn.CreateCommand();
+            if (check)
+            {
+                cmd.CommandText = "UPDATE zorgmoment " +
+                    $"SET client_id = {record.client_id}, datum_tijd = '{record.datum_tijd}', opmerkingen = '{record.opmerkingen}', aanwezigheid_begin = '{record.aanwezigheid_begin}', aanwezigheid_eind = '{record.aanwezigheid_eind}' " +
+                    $"WHERE id = {record.id}";
+            } 
+            else
+            {
+                cmd.CommandText = "INSERT INTO zorgmoment (id, client_id, datum_tijd, opmerkingen, aanwezigheid_begin, aanwezigheid_eind) " +
+                    $"VALUES ({record.id}, {record.client_id}, '{record.datum_tijd}', '{record.opmerkingen}', '{record.aanwezigheid_begin}', '{record.aanwezigheid_eind}')";
+            }
+            cmd.CommandType = CommandType.Text;
+            cmd.ExecuteNonQuery();
+
+            conn.Close();
         }
 
         public ArrayList GetAllZorgmomenten()
@@ -188,28 +226,33 @@ namespace ZAPP
 
         public void InsertClientData(ClientRecord record)
         {
-            var check = CheckRecord(record.id.ToString(), "client");
+            bool check = CheckRecord(record.id.ToString(), "client");
 
-            if (check == false)
+            var conn = new SqliteConnection(connectionString);
+            conn.Open();
+
+            var cmd = conn.CreateCommand();
+
+            if (check)
             {
-                var conn = new SqliteConnection(connectionString);
-
-                conn.Open();
-
-                var cmd = conn.CreateCommand();
-                cmd.CommandText = "insert into client (id, achternaam, voornaam, adres, postcode, woonplaats, telefoonnummer) " +
-                    $"values ({record.id}, '{record.achternaam}', '{record.voornaam}', '{record.adres}', '{record.postcode}', '{record.woonplaats}', '{record.telefoonnummer}')";
-                cmd.CommandType = CommandType.Text;
-                cmd.ExecuteNonQuery();
-
-                Console.WriteLine("Record toegevoegd: " + record.voornaam + " " + record.achternaam);
-
-                conn.Close();
+                cmd.CommandText = $"UPDATE client " +
+                    $"SET achternaam = '{record.achternaam}', voornaam = '{record.voornaam}', adres = '{record.adres}', postcode = '{record.postcode}', woonplaats = '{record.woonplaats}', telefoonnummer = '{record.telefoonnummer}' " +
+                    $"WHERE id = {record.id}";
             }
-            
+            else
+            {
+                cmd.CommandText = "INSERT INTO client (id, achternaam, voornaam, adres, postcode, woonplaats, telefoonnummer) " +
+                    $"VALUES ({record.id}, '{record.achternaam}', '{record.voornaam}', '{record.adres}', '{record.postcode}', '{record.woonplaats}', '{record.telefoonnummer}')";
+            }
+
+            cmd.CommandType = CommandType.Text;
+            cmd.ExecuteNonQuery();
+
+            conn.Close();
+
         }
 
-        public ClientRecord GetClientRecordById(string id)
+        public ClientRecord GetClientById(string id)
         {
             var conn = new SqliteConnection(connectionString);
 
@@ -225,29 +268,6 @@ namespace ZAPP
             conn.Close();
 
             return record;
-        }
-
-        public ArrayList GetAllClientData()
-        {
-            var conn = new SqliteConnection(connectionString);
-
-            conn.Open();
-
-            var cmd = conn.CreateCommand();
-            cmd.CommandText = "SELECT * FROM client";
-            cmd.CommandType = CommandType.Text;
-            SqliteDataReader reader = cmd.ExecuteReader();
-
-            ArrayList clientRecords = new ArrayList();
-            while (reader.Read())
-            {
-                ClientRecord row = new ClientRecord(reader);
-                clientRecords.Add(row);
-            }
-
-            conn.Close();
-
-            return clientRecords;
         }
 
     }

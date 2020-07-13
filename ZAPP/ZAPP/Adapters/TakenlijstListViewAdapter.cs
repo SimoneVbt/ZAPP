@@ -12,14 +12,13 @@ using Android.Widget;
 
 namespace ZAPP
 {
-    [Activity(Label = "HomeListViewAdapter")]
-    public class HomeListViewAdapter : BaseAdapter<ListZorgmomentRecord>
+    [Activity(Label = "TakenLijstListViewAdapter")]
+    class TakenlijstListViewAdapter : BaseAdapter<ListTaakRecord>
     {
-
-        readonly List<ListZorgmomentRecord> items;
+        readonly List<ListTaakRecord> items;
         readonly Activity context;
 
-        public HomeListViewAdapter(Activity context, List<ListZorgmomentRecord> items)
+        public TakenlijstListViewAdapter(Activity context, List<ListTaakRecord> items)
             : base()
         {
             this.context = context;
@@ -27,7 +26,7 @@ namespace ZAPP
         }
 
 
-        public override ListZorgmomentRecord this[int position]
+        public override ListTaakRecord this[int position]
         {
             get { return items[position]; }
         }
@@ -36,7 +35,6 @@ namespace ZAPP
         {
             get { return items.Count; }
         }
-
 
         public override long GetItemId(int position)
         {
@@ -52,12 +50,11 @@ namespace ZAPP
             {
                 view = context.LayoutInflater.Inflate(Resource.Layout.ListRow, null);
             }
-            view.FindViewById<TextView>(Resource.Id.id).Text = "id: " + item.id;
-            view.FindViewById<TextView>(Resource.Id.client_id).Text = "client_id: " + item.client_id; //naam
-            view.FindViewById<TextView>(Resource.Id.datum_tijd).Text = "datum_tijd :" + item.datum_tijd; //goede format
+            view.FindViewById<TextView>(Resource.Id.Text1).Text = "id: " + item.id;
+            view.FindViewById<TextView>(Resource.Id.Text2).Text = "zorgmoment_id: " + item.zorgmoment_id;
+            view.FindViewById<TextView>(Resource.Id.Text3).Text = "omschrijving: " + item.omschrijving;
 
             return view;
         }
-
     }
 }

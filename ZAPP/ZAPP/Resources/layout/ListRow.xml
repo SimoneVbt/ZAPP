@@ -8,23 +8,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="10dip"
-        android:id="@+id/Zorgmoment">
+        android:id="@+id/Overview">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/id"
+        android:id="@+id/Text1"
         android:textSize="20dip"
         android:textStyle="bold" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/client_id"
+        android:id="@+id/Text2"
         android:textSize="20dip"
         android:textStyle="bold" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/datum_tijd"
+        android:id="@+id/Text3"
         android:textSize="20dip"
         android:textStyle="bold" />
     </LinearLayout>

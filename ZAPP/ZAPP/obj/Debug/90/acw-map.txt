@@ -1,6 +1,12 @@
+ZAPP.Takenlijst, ZAPP;crc646c02556064c59ab6.Takenlijst
+ZAPP.Takenlijst;crc646c02556064c59ab6.Takenlijst
+zapp.Takenlijst;crc646c02556064c59ab6.Takenlijst
 ZAPP.HomeListViewAdapter, ZAPP;crc646c02556064c59ab6.HomeListViewAdapter
 ZAPP.HomeListViewAdapter;crc646c02556064c59ab6.HomeListViewAdapter
 zapp.HomeListViewAdapter;crc646c02556064c59ab6.HomeListViewAdapter
+ZAPP.TakenlijstListViewAdapter, ZAPP;crc646c02556064c59ab6.TakenlijstListViewAdapter
+ZAPP.TakenlijstListViewAdapter;crc646c02556064c59ab6.TakenlijstListViewAdapter
+zapp.TakenlijstListViewAdapter;crc646c02556064c59ab6.TakenlijstListViewAdapter
 ZAPP.Home, ZAPP;crc646c02556064c59ab6.Home
 ZAPP.Home;crc646c02556064c59ab6.Home
 zapp.Home;crc646c02556064c59ab6.Home

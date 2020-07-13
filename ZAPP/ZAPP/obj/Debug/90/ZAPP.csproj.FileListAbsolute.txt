@@ -536,3 +536,7 @@ D:\xampp\htdocs\ZAPP\ZAPP\ZAPP\obj\Debug\90\stamp\_ResolveLibraryProjectImports.
 D:\xampp\htdocs\ZAPP\ZAPP\ZAPP\obj\Debug\90\res\layout\home.xml
 D:\xampp\htdocs\ZAPP\ZAPP\ZAPP\obj\Debug\90\res\layout\listrow.xml
 D:\xampp\htdocs\ZAPP\ZAPP\ZAPP\obj\Debug\90\android\src\crc646c02556064c59ab6\HomeListViewAdapter.java
+D:\xampp\htdocs\ZAPP\ZAPP\ZAPP\obj\Debug\90\android\src\crc646c02556064c59ab6\Takenlijst.java
+D:\xampp\htdocs\ZAPP\ZAPP\ZAPP\obj\Debug\90\android\src\crc646c02556064c59ab6\TakenLijstListViewAdapter.java
+D:\xampp\htdocs\ZAPP\ZAPP\ZAPP\obj\Debug\90\android\src\crc646c02556064c59ab6\TakenLijstListViewAdapterViewHolder.java
+D:\xampp\htdocs\ZAPP\ZAPP\ZAPP\obj\Debug\90\res\layout\detail.xml

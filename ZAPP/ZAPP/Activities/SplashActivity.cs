@@ -18,6 +18,7 @@ namespace ZAPP
         {
             base.OnCreate(bundle);
             Database db = new Database(this);
+            db.CreateDatabase();
             db.DownloadData();
             StartActivity(typeof(Home));
         }

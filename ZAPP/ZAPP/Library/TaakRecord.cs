@@ -1,5 +1,5 @@
-﻿using System.Json;
-using System.Collections;
+﻿using System;
+using System.Json;
 using Mono.Data.Sqlite;
 
 
@@ -11,7 +11,7 @@ namespace ZAPP
         public int zorgmoment_id;
         public int stap;
         public string omschrijving;
-        public bool voltooid;
+        public int voltooid;
 
         public TaakRecord(JsonValue record)
         {
@@ -20,6 +20,15 @@ namespace ZAPP
             stap = record["stap"];
             omschrijving = record["omschrijving"];
             voltooid = record["voltooid"];
+        }
+
+        public TaakRecord(SqliteDataReader record)
+        {
+            id = (int)(Int64) record["id"];
+            zorgmoment_id = (int)(Int64) record["zorgmoment_id"];
+            stap = (int)(Int64) record["stap"];
+            omschrijving = (string) record["omschrijving"];
+            voltooid = (int)(Int32) record["voltooid"];
         }
     }
 }

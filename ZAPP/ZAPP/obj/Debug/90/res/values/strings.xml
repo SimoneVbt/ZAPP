@@ -1,4 +1,4 @@
-<resources><string name="app_version">0.05</string><string name="app_name">ZAPP</string><string name="create_table_gebruiker">
+<resources><string name="app_version">0.1</string><string name="app_name">ZAPP</string><string name="create_table_gebruiker">
 		CREATE TABLE gebruiker
 		(id INTEGER NOT NULL,
 		gebruikersnaam VARCHAR(30) NOT NULL)
@@ -8,7 +8,7 @@
 		zorgmoment_id INTEGER NOT NULL,
 		stap INTEGER NOT NULL,
 		omschrijving VARCHAR(30) NOT NULL,
-		voltooid TINYINT(1) DEFAULT NULL)
+		voltooid INT DEFAULT NULL)
 	</string><string name="create_table_client">
 		CREATE TABLE client
 		(id INTEGER NOT NULL,
@@ -22,8 +22,8 @@
 		CREATE TABLE zorgmoment
 		(id INTEGER NOT NULL,
 		client_id INTEGER NOT NULL,
-		datum_tijd DATETIME NOT NULL,
-		aanwezigheid_begin DATETIME DEFAULT NULL,
-		aanwezigheid_eind DATETIME DEFAULT NULL,
+		datum_tijd VARCHAR(20) NOT NULL,
+		aanwezigheid_begin VARCHAR(20) DEFAULT NULL,
+		aanwezigheid_eind VARCHAR(20) DEFAULT NULL,
 		opmerkingen VARCHAR(200) DEFAULT NULL)
 	</string></resources>

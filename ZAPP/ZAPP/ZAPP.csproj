@@ -64,13 +64,16 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="HomeListViewAdapter.cs" />
+    <Compile Include="Activities\Detail.cs" />
+    <Compile Include="Adapters\HomeListViewAdapter.cs" />
+    <Compile Include="Adapters\TakenlijstListViewAdapter.cs" />
     <Compile Include="Library\ClientRecord.cs" />
     <Compile Include="Library\Database.cs" />
     <Compile Include="Activities\Home.cs" />
     <Compile Include="Activities\SplashActivity.cs" />
     <Compile Include="Library\GebruikerRecord.cs" />
     <Compile Include="Library\ListClientRecord.cs" />
+    <Compile Include="Library\ListTaakRecord.cs" />
     <Compile Include="Library\ListZorgmomentRecord.cs" />
     <Compile Include="Library\TaakRecord.cs" />
     <Compile Include="Library\ZorgmomentRecord.cs" />
@@ -122,6 +125,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\ListRow.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\Detail.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
