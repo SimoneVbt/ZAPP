@@ -540,3 +540,4 @@ D:\xampp\htdocs\ZAPP\ZAPP\ZAPP\obj\Debug\90\android\src\crc646c02556064c59ab6\Ta
 D:\xampp\htdocs\ZAPP\ZAPP\ZAPP\obj\Debug\90\android\src\crc646c02556064c59ab6\TakenLijstListViewAdapter.java
 D:\xampp\htdocs\ZAPP\ZAPP\ZAPP\obj\Debug\90\android\src\crc646c02556064c59ab6\TakenLijstListViewAdapterViewHolder.java
 D:\xampp\htdocs\ZAPP\ZAPP\ZAPP\obj\Debug\90\res\layout\detail.xml
+D:\xampp\htdocs\ZAPP\ZAPP\ZAPP\obj\Debug\90\android\src\crc646c02556064c59ab6\Login.java

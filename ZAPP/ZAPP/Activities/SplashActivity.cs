@@ -20,7 +20,19 @@ namespace ZAPP
             Database db = new Database(this);
             db.CreateDatabase();
             db.DownloadData();
+
             StartActivity(typeof(Home));
+            /*
+            if (db.CheckLogin())
+            {
+                StartActivity(typeof(Home));
+            }
+            else
+            {
+                StartActivity(typeof(Login));
+            }
+            */
+
         }
     }
 }

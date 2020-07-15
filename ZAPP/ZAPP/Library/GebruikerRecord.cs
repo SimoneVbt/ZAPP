@@ -1,21 +1,21 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Json;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
+using Mono.Data.Sqlite;
 
 namespace ZAPP
 {
     public class GebruikerRecord
     {
         public int id;
-        public string gebruikersnaam;
+
+        public GebruikerRecord(JsonValue record)
+        {
+            id = record["id"];
+        }
+
+        public GebruikerRecord(SqliteDataReader record)
+        {
+            id = (int)(Int64) record["id"];
+        }
     }
 }

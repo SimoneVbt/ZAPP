@@ -1,8 +1,13 @@
 adaptive-icon;obj\Debug\90\res\mipmap-anydpi-v26\ic_launcher.xml
 adaptive-icon;obj\Debug\90\res\mipmap-anydpi-v26\ic_launcher_round.xml
+android.support.design.internal.BottomNavigationMenuView;obj\Debug\90\res\layout\detail.xml
+android.support.design.internal.NavigationMenuView;obj\Debug\90\res\layout\detail.xml
+android.support.design.widget.TabItem;obj\Debug\90\res\layout\detail.xml
+android.support.design.widget.TabLayout;obj\Debug\90\res\layout\detail.xml
 background;obj\Debug\90\res\mipmap-anydpi-v26\ic_launcher.xml
 background;obj\Debug\90\res\mipmap-anydpi-v26\ic_launcher_round.xml
 bitmap;obj\Debug\90\res\drawable\splash_background.xml
+Button;obj\Debug\90\res\layout\detail.xml
 cache-path;D:\xampp\htdocs\ZAPP\ZAPP\ZAPP\obj\Debug\90\lp\35\jl\res\xml\xamarin_essentials_fileprovider_file_paths.xml
 color;obj\Debug\90\res\values\colors.xml
 color;obj\Debug\90\res\values\ic_launcher_background.xml
@@ -10,7 +15,11 @@ external-cache-path;D:\xampp\htdocs\ZAPP\ZAPP\ZAPP\obj\Debug\90\lp\35\jl\res\xml
 external-path;D:\xampp\htdocs\ZAPP\ZAPP\ZAPP\obj\Debug\90\lp\35\jl\res\xml\xamarin_essentials_fileprovider_file_paths.xml
 foreground;obj\Debug\90\res\mipmap-anydpi-v26\ic_launcher.xml
 foreground;obj\Debug\90\res\mipmap-anydpi-v26\ic_launcher_round.xml
+GridLayout;obj\Debug\90\res\layout\detail.xml
+Image;obj\Debug\90\res\layout\detail.xml
+ImageView;obj\Debug\90\res\layout\detail.xml
 item;obj\Debug\90\res\values\styles.xml
+LinearLayout;obj\Debug\90\res\layout\detail.xml
 LinearLayout;obj\Debug\90\res\layout\listrow.xml
 ListView;obj\Debug\90\res\layout\detail.xml
 ListView;obj\Debug\90\res\layout\home.xml
@@ -25,4 +34,5 @@ resources;obj\Debug\90\res\values\strings.xml
 resources;obj\Debug\90\res\values\styles.xml
 string;obj\Debug\90\res\values\strings.xml
 style;obj\Debug\90\res\values\styles.xml
+TextView;obj\Debug\90\res\layout\detail.xml
 TextView;obj\Debug\90\res\layout\listrow.xml

@@ -35,6 +35,6 @@ class GebruikerController extends AbstractController
             $id = $result[0]["id"];
             return new Response("$id");
         }
-        return new Response("Foutieve gebruikersnaam en/of wachtwoord");
+        return new Response("-1");
     }
 }

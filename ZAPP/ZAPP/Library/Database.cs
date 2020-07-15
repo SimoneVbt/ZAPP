@@ -24,7 +24,8 @@ namespace ZAPP
         private readonly Context context;
         private readonly string dbpath;
         private readonly string connectionString;
-        private readonly string url = "http://192.168.1.244/zapp/zapp_api/public/index.php/api/zorgmoment/get/1";
+        private readonly string url = "http://192.168.0.105/zapp/zapp_api/public/index.php/api/zorgmoment/get/1";
+        //private readonly string url = "http://192.168.1.244/zapp/zapp_api/public/index.php/api/zorgmoment/get/1";
 
         public Database(Context context)
         {
@@ -121,6 +122,83 @@ namespace ZAPP
             conn.Close();
             return false;
         }
+        //----------------LOGIN----------------
+
+        private readonly string url_login = "http://192.168.0.105/zapp/zapp_api/public/index.php/api/gebruiker/login";
+        //private readonly string url_login = "http://192.168.1.244/zapp/zapp_api/public/index.php/api/gebruiker/login";
+
+        public void Login()
+        {
+            var webClient = new WebClient()
+            {
+                Encoding = Encoding.UTF8
+            };
+
+            try
+            {
+                // gegevens doorgeven
+                byte[] myDataBuffer = webClient.DownloadData(url_login);
+
+                string download = Encoding.ASCII.GetString(myDataBuffer);
+                JsonValue value = JsonValue.Parse(download);
+                foreach (JsonObject result in value)
+                {
+                    GebruikerRecord record = new GebruikerRecord(result);
+                    InsertGebruikerId(record);
+                }
+
+            }
+            catch (WebException e)
+            {
+                Console.WriteLine("exception: " + e.Message);
+            }
+        }
+
+        public void InsertGebruikerId(GebruikerRecord record)
+        {
+            var conn = new SqliteConnection(connectionString);
+            conn.Open();
+
+            var cmd = conn.CreateCommand();
+            cmd.CommandText = $"INSERT INTO gebruiker (id) VALUES {record.id}";
+            cmd.CommandType = CommandType.Text;
+            cmd.ExecuteNonQuery();
+
+            conn.Close();
+        }
+
+        public bool CheckLogin()
+        {
+            var conn = new SqliteConnection(connectionString);
+            conn.Open();
+
+            var cmd = conn.CreateCommand();
+            cmd.CommandText = "SELECT * FROM gebruiker";
+            cmd.CommandType = CommandType.Text;
+            int result = cmd.ExecuteNonQuery();
+
+            if (result > 0)
+            {
+                conn.Close();
+                return true;
+            }
+            conn.Close();
+            return false;
+        }
+
+        public void Logout()
+        {
+            var conn = new SqliteConnection(connectionString);
+            conn.Open();
+
+            var cmd = conn.CreateCommand();
+            cmd.CommandText = "DELETE FROM gebruiker";
+            cmd.CommandType = CommandType.Text;
+            cmd.ExecuteNonQuery();
+
+            conn.Close();
+        }
+
 
         //----------------TAAK TABLE----------------
 

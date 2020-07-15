@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activities\Detail.cs" />
+    <Compile Include="Activities\Login.cs" />
     <Compile Include="Adapters\HomeListViewAdapter.cs" />
     <Compile Include="Adapters\TakenlijstListViewAdapter.cs" />
     <Compile Include="Library\ClientRecord.cs" />
