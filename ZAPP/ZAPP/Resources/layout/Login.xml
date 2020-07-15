@@ -1,1 +1,60 @@
-﻿<?xml version="1.0" encoding="utf-8" ?> 
+﻿
+<GridLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/Login"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+    <ImageView
+        android:id="@+id/ImageLogin"
+        android:src="@drawable/splash"
+        android:contentDescription="@string/image-description-logo"
+        android:layout_rowWeight="1"
+        android:layout_width="0dip"
+        android:layout_height="0dip"
+        android:layout_gravity="fill_horizontal"
+        android:scaleType="centerCrop"
+         />
+    <GridLayout
+        android:id="@+id/LoginForm" 
+        android:orientation="vertical"
+        android:layout_rowWeight="2"
+        android:layout_width="0dip"
+        android:layout_height="0dip"
+        android:layout_gravity="fill_horizontal"
+        >
+        <EditText
+            android:inputType="textPersonName"
+            android:id="@+id/Username"
+            android:layout_rowWeight="1"
+            android:layout_width="200dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingTop="40dip"
+            />
+        <EditText
+            android:inputType="textPassword"
+            android:id="@+id/Password"
+            android:layout_rowWeight="1"
+            android:layout_width="200dip"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            />
+        <Button
+            android:text="Log in"
+            android:id="@+id/LoginSubmit"
+            android:layout_rowWeight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="20dip"
+            />
+    </GridLayout>
+    <Space
+        android:id="@+id/SpaceLogin"
+        android:layout_rowWeight="1"
+        android:layout_width="0dip"
+        android:layout_height="0dip"
+        />
+</GridLayout>

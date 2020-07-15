@@ -18,20 +18,18 @@ namespace ZAPP
         {
             base.OnCreate(bundle);
             Database db = new Database(this);
-            db.CreateDatabase();
-            db.DownloadData();
-
-            StartActivity(typeof(Home));
-            /*
+            
             if (db.CheckLogin())
             {
                 StartActivity(typeof(Home));
+                db.CreateDatabase();
+                db.DownloadData();
             }
             else
             {
                 StartActivity(typeof(Login));
             }
-            */
+            
 
         }
     }
