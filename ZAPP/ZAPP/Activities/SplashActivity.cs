@@ -18,12 +18,14 @@ namespace ZAPP
         {
             base.OnCreate(bundle);
             Database db = new Database(this);
-            
-            if (db.CheckLogin())
+            db.CreateDatabase();
+
+            int user_id = db.CheckLogin();
+            //user_id = 0, werken via GebruikerRecord want dit werkt niet
+            if (user_id > 0)
             {
                 StartActivity(typeof(Home));
-                db.CreateDatabase();
-                db.DownloadData();
+                db.DownloadData(user_id.ToString());
             }
             else
             {

@@ -10,16 +10,24 @@
         android:id="@+id/ImageLogin"
         android:src="@drawable/splash"
         android:contentDescription="@string/image-description-logo"
-        android:layout_rowWeight="1"
+        android:layout_rowWeight="2"
         android:layout_width="0dip"
         android:layout_height="0dip"
         android:layout_gravity="fill_horizontal"
         android:scaleType="centerCrop"
          />
+    <TextView
+        android:id="@+id/FlashText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:paddingTop="10dip"
+        android:textColor="#9932CC"
+        />
     <GridLayout
         android:id="@+id/LoginForm" 
         android:orientation="vertical"
-        android:layout_rowWeight="2"
+        android:layout_rowWeight="3"
         android:layout_width="0dip"
         android:layout_height="0dip"
         android:layout_gravity="fill_horizontal"
@@ -28,24 +36,29 @@
             android:inputType="textPersonName"
             android:id="@+id/Username"
             android:layout_rowWeight="1"
-            android:layout_width="200dip"
+            android:layout_width="250dip"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:paddingTop="40dip"
+            android:background="@drawable/login_edittext_border"
+            android:padding="8dip"
+            android:hint="gebruikersnaam"
             />
         <EditText
             android:inputType="textPassword"
             android:id="@+id/Password"
             android:layout_rowWeight="1"
-            android:layout_width="200dip"
+            android:layout_width="250dip"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
+            android:background="@drawable/login_edittext_border"
+            android:padding="8dip"
+            android:hint="wachtwoord"
             />
         <Button
             android:text="Log in"
             android:id="@+id/LoginSubmit"
             android:layout_rowWeight="1"
-            android:layout_width="wrap_content"
+            android:layout_width="150dip"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:textSize="20dip"
@@ -53,7 +66,7 @@
     </GridLayout>
     <Space
         android:id="@+id/SpaceLogin"
-        android:layout_rowWeight="1"
+        android:layout_rowWeight="2"
         android:layout_width="0dip"
         android:layout_height="0dip"
         />

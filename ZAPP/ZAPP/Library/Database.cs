@@ -24,8 +24,8 @@ namespace ZAPP
         private readonly Context context;
         private readonly string dbpath;
         private readonly string connectionString;
-        private readonly string url = "http://192.168.0.105/zapp/zapp_api/public/index.php/api/zorgmoment/get/1";
-        //private readonly string url = "http://192.168.1.244/zapp/zapp_api/public/index.php/api/zorgmoment/get/1";
+        //private readonly string url = "http://192.168.0.105/zapp/zapp_api/public/index.php/api/zorgmoment/get/";
+        private readonly string url = "http://192.168.1.244/zapp/zapp_api/public/index.php/api/zorgmoment/get/";
 
         public Database(Context context)
         {
@@ -69,16 +69,18 @@ namespace ZAPP
             }
         }
 
-        public void DownloadData()
+        public void DownloadData(string id)
         {
             var webClient = new WebClient()
             {
                 Encoding = Encoding.UTF8
             };
 
+            string personalisedUrl = url + id;
+
             try
             {
-                byte[] myDataBuffer = webClient.DownloadData(url);
+                byte[] myDataBuffer = webClient.DownloadData(personalisedUrl);
 
                 string download = Encoding.ASCII.GetString(myDataBuffer);
                 JsonValue value = JsonValue.Parse(download);
@@ -124,50 +126,20 @@ namespace ZAPP
         }
         //----------------LOGIN----------------
 
-        private readonly string url_login = "http://192.168.0.105/zapp/zapp_api/public/index.php/api/gebruiker/login";
-        //private readonly string url_login = "http://192.168.1.244/zapp/zapp_api/public/index.php/api/gebruiker/login";
-
-        public void Login()
-        {
-            var webClient = new WebClient()
-            {
-                Encoding = Encoding.UTF8
-            };
-
-            try
-            {
-                // gegevens doorgeven
-                byte[] myDataBuffer = webClient.DownloadData(url_login);
-
-                string download = Encoding.ASCII.GetString(myDataBuffer);
-                JsonValue value = JsonValue.Parse(download);
-                foreach (JsonObject result in value)
-                {
-                    GebruikerRecord record = new GebruikerRecord(result);
-                    InsertGebruikerId(record);
-                }
-
-            }
-            catch (WebException e)
-            {
-                Console.WriteLine("exception: " + e.Message);
-            }
-        }
-
-        public void InsertGebruikerId(GebruikerRecord record)
+        public void Login(string id)
         {
             var conn = new SqliteConnection(connectionString);
             conn.Open();
 
             var cmd = conn.CreateCommand();
-            cmd.CommandText = $"INSERT INTO gebruiker (id) VALUES {record.id}";
+            cmd.CommandText = $"INSERT INTO gebruiker (id) VALUES ('{id}')";
             cmd.CommandType = CommandType.Text;
             cmd.ExecuteNonQuery();
 
             conn.Close();
         }
 
-        public bool CheckLogin()
+        public int CheckLogin()
         {
             var conn = new SqliteConnection(connectionString);
             conn.Open();
@@ -177,13 +149,7 @@ namespace ZAPP
             cmd.CommandType = CommandType.Text;
             int result = cmd.ExecuteNonQuery();
 
-            if (result > 0)
-            {
-                conn.Close();
-                return true;
-            }
-            conn.Close();
-            return false;
+            return result;
         }
 
         public void Logout()

@@ -1,14 +1,13 @@
 <resources>
 	
-    <string name="app_version">0.1</string>
+    <string name="app_version">0.11</string>
     <string name="app_name">ZAPP</string>
 	
 	<string name="image-description-logo">Het ZAPP-logo</string>
 
 	<string name="create_table_gebruiker">
 		CREATE TABLE gebruiker
-		(id INTEGER NOT NULL,
-		gebruikersnaam VARCHAR(30) NOT NULL)
+		(id INTEGER NOT NULL)
 	</string>
 	<string name="create_table_taak">
 		CREATE TABLE taak

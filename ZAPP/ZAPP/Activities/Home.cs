@@ -22,6 +22,7 @@ namespace ZAPP
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
+            var id = Intent.GetStringExtra("id");
 
             Database db = new Database(this);
             result = db.GetAllZorgmomenten();
@@ -39,7 +40,7 @@ namespace ZAPP
             listview.ItemClick += OnListItemClick;
         }
 
-        protected void OnListItemClick(object sender, Android.Widget.AdapterView.ItemClickEventArgs e)
+        protected void OnListItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
             var moment = records[e.Position];
             var intent = new Intent(this, typeof(Takenlijst));
