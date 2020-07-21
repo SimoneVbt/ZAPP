@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
 using Android.App;
-using Android.Content;
 using Android.OS;
-using Android.Runtime;
-using Android.Views;
 using Android.Widget;
 
 namespace ZAPP
@@ -23,15 +16,19 @@ namespace ZAPP
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
-            client = GlobalClientRecord.client;
+            client = Global.client;
 
             SetContentView(Resource.Layout.DetailAdres);
+            FindViewById<TextView>(Resource.Id.Adres).Text = $"{client.adres}";
+            FindViewById<TextView>(Resource.Id.PostcodeWoonplaats).Text = $"{client.postcode} {client.woonplaats}";
+            FindViewById<TextView>(Resource.Id.Telefoonnummer).Text = $" Telefoonnummer: {client.telefoonnummer}";
 
             homebtn = FindViewById<Button>(Resource.Id.HomeButton);
             homebtn.Click += Home;
             takenbtn = FindViewById<Button>(Resource.Id.TakenButton);
             takenbtn.Click += DetailTaken;
             kaartbtn = FindViewById<Button>(Resource.Id.KaartButton);
+            kaartbtn.Click += DetailKaart;
         }
 
         public void Home(object sender, EventArgs e)
@@ -42,6 +39,13 @@ namespace ZAPP
         public void DetailTaken(object sender, EventArgs e)
         {
             StartActivity(typeof(DetailTaken));
+            OverridePendingTransition(0, 0);
+        }
+
+        public void DetailKaart(object sender, EventArgs e)
+        {
+            StartActivity(typeof(DetailKaart));
+            OverridePendingTransition(0, 0);
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using Android.App;
 using Android.OS;
 
-
 namespace ZAPP
 {
 

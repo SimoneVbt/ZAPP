@@ -28,7 +28,8 @@ namespace ZAPP
             id = (int)(Int64) record["id"];
             client_id = (int)(Int64) record["client_id"];
             datum_tijd = (string) record["datum_tijd"];
-            aanwezigheid_begin = (string)record["aanwezigheid_begin"];
+            opmerkingen = (string) record["opmerkingen"];
+            aanwezigheid_begin = (string) record["aanwezigheid_begin"];
             aanwezigheid_eind = (string) record["aanwezigheid_eind"];
         }
     }

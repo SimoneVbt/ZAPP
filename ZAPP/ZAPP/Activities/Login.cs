@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using Android.App;
-using Android.Content;
 using Android.OS;
 using Android.Widget;
 

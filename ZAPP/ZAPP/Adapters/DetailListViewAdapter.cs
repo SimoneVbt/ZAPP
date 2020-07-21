@@ -44,7 +44,8 @@ namespace ZAPP
                 view = context.LayoutInflater.Inflate(Resource.Layout.ListRow, null);
             }
             view.FindViewById<TextView>(Resource.Id.TextLeftBig).Text = $"{taak.stap} - {taak.omschrijving}";
-            view.FindViewById<TextView>(Resource.Id.TextRightBig).Text = "o";
+            view.FindViewById<TextView>(Resource.Id.TextRightBig).Text = "O";
+            view.FindViewById<TextView>(Resource.Id.TextRightBig).TextSize = 20;
 
             return view;
         }

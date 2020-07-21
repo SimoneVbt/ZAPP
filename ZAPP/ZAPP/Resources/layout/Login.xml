@@ -10,7 +10,7 @@
         android:id="@+id/ImageLogin"
         android:src="@drawable/splash"
         android:contentDescription="@string/image-description-logo"
-        android:layout_rowWeight="2"
+        android:layout_rowWeight="3"
         android:layout_width="0dip"
         android:layout_height="0dip"
         android:layout_gravity="fill_horizontal"
@@ -23,11 +23,12 @@
         android:layout_gravity="center"
         android:paddingTop="10dip"
         android:textColor="#9932CC"
+        android:textSize="18dip"
         />
     <GridLayout
         android:id="@+id/LoginForm" 
         android:orientation="vertical"
-        android:layout_rowWeight="3"
+        android:layout_rowWeight="4"
         android:layout_width="0dip"
         android:layout_height="0dip"
         android:layout_gravity="fill_horizontal"
@@ -66,7 +67,7 @@
     </GridLayout>
     <Space
         android:id="@+id/SpaceLogin"
-        android:layout_rowWeight="2"
+        android:layout_rowWeight="3"
         android:layout_width="0dip"
         android:layout_height="0dip"
         />

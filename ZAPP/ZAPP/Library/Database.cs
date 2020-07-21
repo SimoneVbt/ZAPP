@@ -25,7 +25,7 @@ namespace ZAPP
             Resources res = context.Resources;
             string app_name = res.GetString(Resource.String.app_name);
             string app_version = res.GetString(Resource.String.app_version);
-            string documentsPath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal);
+            string documentsPath = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
             string dbname = "db_" + app_name + "_" + app_version + ".sqlite";
 
             dbpath = Path.Combine(documentsPath, dbname);

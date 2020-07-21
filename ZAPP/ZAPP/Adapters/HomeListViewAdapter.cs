@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
 using Android.App;
-using Android.Content;
 using Android.Views;
 using Android.Widget;
 
@@ -48,13 +49,20 @@ namespace ZAPP
             {
                 view = context.LayoutInflater.Inflate(Resource.Layout.ListRow, null);
             }
+
+            CultureInfo Nederlands = new CultureInfo("nl-NL", false);
+            CultureInfo.CurrentCulture = Nederlands;
+            DateTime date = Convert.ToDateTime(moment.datum_tijd);
+            string dateString = date.ToString("dd-MM-yyyy");
+            string timeString = date.ToString("HH:mm");
+
             view.FindViewById<TextView>(Resource.Id.TextLeftBig).Text = $"{client.voornaam} {client.achternaam}";
             view.FindViewById<TextView>(Resource.Id.TextLeftSmall).Text = $"{client.adres}, {client.postcode} {client.woonplaats}";
-            view.FindViewById<TextView>(Resource.Id.TextRightBig).Text = "datum"; //goede format
-            view.FindViewById<TextView>(Resource.Id.TextRightSmall).Text = "tijd"; //goede format
+            view.FindViewById<TextView>(Resource.Id.TextRightBig).Text = dateString;
+            view.FindViewById<TextView>(Resource.Id.TextRightSmall).Text = timeString;
 
             return view;
         }
-
+         
     }
 }

@@ -5,7 +5,6 @@
     android:orientation="vertical" 
     >
     <ImageView
-        android:id="@+id/Image"
         android:src="@drawable/splash"
         android:contentDescription="@string/image-description-logo" 
         android:layout_rowWeight="3"
@@ -58,63 +57,52 @@
             />
     </GridLayout>
 
-    <GridLayout
-        android:id="@+id/Adres" 
-        android:layout_rowWeight="6"
-        android:layout_width="0dip"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="0dip"
+        android:layout_rowWeight="5"
         android:layout_gravity="fill_horizontal"
         android:orientation="vertical"
+        android:padding="10dip"
         >
         <TextView
-            android:id="@+id/Straat" 
-            android:text="Straat huisnummer"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/Adres"
             android:layout_width="match_parent"
-            android:layout_height="0dip"
-            android:layout_rowWeight="1"
+            android:layout_height="wrap_content"
+            android:textSize="20dip"
+            android:textStyle="bold"
+            android:padding="5dip"
             />
         <TextView
-            android:id="@+id/PostcodeWoonplaats"
-            android:text="Postcode woonplaats"
-            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:id="@+id/PostcodeWoonplaats" 
             android:layout_width="match_parent"
-            android:layout_height="0dip"
-            android:layout_rowWeight="1"
-            />
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="0dip"
-            android:layout_rowWeight="1"
+            android:layout_height="wrap_content"
+            android:textSize="20dip"
+            android:textStyle="bold"
+            android:padding="5dip"
             />
         <TextView
             android:id="@+id/Telefoonnummer" 
-            android:text="Telefoonnummer"
-            android:textAppearance="?android:attr/textAppearanceMedium"
             android:layout_width="match_parent"
-            android:layout_height="0dip"
-            android:layout_rowWeight="1"
+            android:layout_height="wrap_content"
+            android:textSize="20dip"
+            android:textStyle="bold"
+            android:paddingLeft="5dip"
+            android:paddingTop="50dip"
             />
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="0dip"
-            android:layout_rowWeight="1"
-            />
-        <TextView
-            android:id="@+id/Planning" 
-            android:text="Planning"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:layout_width="match_parent"
-            android:layout_height="0dip"
-            android:layout_rowWeight="1"
-            />
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="0dip"
-            android:layout_rowWeight="1"
-            />
-        </GridLayout>
-
+    </LinearLayout>
+        
+    <TextView
+        android:id="@+id/Planning" 
+        android:text="@string/planning"
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_rowWeight="2"
+        android:textSize="18dip"
+        android:textStyle="bold"
+        android:paddingLeft="15dip"
+        />
+        
     <Button
         android:id="@+id/AanwezigButton"
         android:textAlignment="center"
@@ -124,4 +112,5 @@
         android:layout_gravity="fill_horizontal"
         android:background="@color/green"
         />
+
 </GridLayout>

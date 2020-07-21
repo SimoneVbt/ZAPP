@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using ArrayList = System.Collections.ArrayList;
 using Android.App;
-using Android.Content;
 using Android.OS;
 using Android.Widget;
 
@@ -17,6 +16,8 @@ namespace ZAPP
         ArrayList result;
         List<ListTaakRecord> taakRecords;
         ArrayList taken;
+        Button logout;
+
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
@@ -35,16 +36,19 @@ namespace ZAPP
             listview = FindViewById<ListView>(Resource.Id.ZorgmomentOverview);
             listview.Adapter = new HomeListViewAdapter(this, momentRecords);
             listview.ItemClick += OnListItemClick;
+
+            logout = FindViewById<Button>(Resource.Id.Logout);
+            logout.Click += Logout;
         }
 
         protected void OnListItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
             var moment = momentRecords[e.Position];
-
             ZorgmomentRecord moment_record = db.GetZorgmomentById(moment.id);
-            GlobalZorgmoment.zorgmoment = moment_record;
+            Global.zorgmoment = moment_record;
+
             ClientRecord client = db.GetClientById(moment_record.client_id.ToString());
-            GlobalClientRecord.client = client;
+            Global.client = client;
 
             taken = db.GetTakenByZorgmoment(moment.id);
             taakRecords = new List<ListTaakRecord>();
@@ -53,17 +57,15 @@ namespace ZAPP
                 ListTaakRecord row = new ListTaakRecord(taak.id.ToString(), taak.zorgmoment_id.ToString(), taak.stap.ToString(), taak.omschrijving, taak.voltooid.ToString());
                 taakRecords.Add(row);
             }
-            GlobalTaakRecords.taakRecords = taakRecords;
+            Global.taakRecords = taakRecords;
 
             StartActivity(typeof(DetailTaken));
         }
 
-        /*
-         * public function ConvertDateTime()
-         * {
-         *  CultureInfo Nederlands = new CultureInfo("nl-NL", false);
-            CultureInfo.CurrentCulture = Nederlands;
-         * }
-         */
+        public void Logout(object sender, EventArgs e)
+        {
+            db.Logout();
+            StartActivity(typeof(Login));
+        }
     }
 }
