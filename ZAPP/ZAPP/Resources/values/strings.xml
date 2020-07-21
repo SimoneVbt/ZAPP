@@ -4,6 +4,10 @@
     <string name="app_name">ZAPP</string>
 	
 	<string name="image-description-logo">Het ZAPP-logo</string>
+	<string name="button-taken">Taken</string>
+	<string name="button-adres">Adres</string>
+	<string name="button-kaart">Kaart</string>
+	<string name="button-home">Home</string>
 
 	<string name="create_table_gebruiker">
 		CREATE TABLE gebruiker

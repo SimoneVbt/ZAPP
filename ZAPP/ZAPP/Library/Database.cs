@@ -1,21 +1,13 @@
 ﻿using System;
-using System.Linq;
 using System.Text;
 using System.IO;
 using System.Net;
 using System.Json;
 using System.Collections;
 using System.Data;
-
 using Mono.Data.Sqlite;
-
-using Android.App;
 using Android.Content;
 using Android.Content.Res;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 
 namespace ZAPP
 {
@@ -24,8 +16,8 @@ namespace ZAPP
         private readonly Context context;
         private readonly string dbpath;
         private readonly string connectionString;
-        //private readonly string url = "http://192.168.0.105/zapp/zapp_api/public/index.php/api/zorgmoment/get/";
-        private readonly string url = "http://192.168.1.244/zapp/zapp_api/public/index.php/api/zorgmoment/get/";
+        private readonly string url = "http://192.168.0.109/zapp/zapp_api/public/index.php/api/zorgmoment/get/";
+        //private readonly string url = "http://192.168.1.244/zapp/zapp_api/public/index.php/api/zorgmoment/get/";
 
         public Database(Context context)
         {
@@ -124,6 +116,7 @@ namespace ZAPP
             conn.Close();
             return false;
         }
+
         //----------------LOGIN----------------
 
         public void Login(string id)
@@ -139,7 +132,7 @@ namespace ZAPP
             conn.Close();
         }
 
-        public int CheckLogin()
+        public bool CheckLogin()
         {
             var conn = new SqliteConnection(connectionString);
             conn.Open();
@@ -147,9 +140,31 @@ namespace ZAPP
             var cmd = conn.CreateCommand();
             cmd.CommandText = "SELECT * FROM gebruiker";
             cmd.CommandType = CommandType.Text;
-            int result = cmd.ExecuteNonQuery();
+            SqliteDataReader reader = cmd.ExecuteReader();
 
-            return result;
+            if (reader.HasRows)
+            {
+                conn.Close();
+                return true;
+            }
+            conn.Close();
+            return false;
+        }
+
+        public GebruikerRecord GetGebruiker()
+        {
+            var conn = new SqliteConnection(connectionString);
+            conn.Open();
+
+            var cmd = conn.CreateCommand();
+            cmd.CommandText = "SELECT * FROM gebruiker";
+            cmd.CommandType = CommandType.Text;
+
+            SqliteDataReader reader = cmd.ExecuteReader();
+            GebruikerRecord record = new GebruikerRecord(reader);
+
+            conn.Close();
+            return record;
         }
 
         public void Logout()
@@ -266,6 +281,22 @@ namespace ZAPP
             return momentRecords;
         }
 
+        public ZorgmomentRecord GetZorgmomentById(string id)
+        {
+            var conn = new SqliteConnection(connectionString);
+            conn.Open();
+
+            var cmd = conn.CreateCommand();
+            cmd.CommandText = $"SELECT * FROM zorgmoment WHERE id = {id}";
+            cmd.CommandType = CommandType.Text;
+            SqliteDataReader reader = cmd.ExecuteReader();
+
+            ZorgmomentRecord record = new ZorgmomentRecord(reader);
+
+            conn.Close();
+            return record;
+        }
+
         //----------------CLIENT TABLE----------------
 
         public void InsertClientData(ClientRecord record)
@@ -299,7 +330,6 @@ namespace ZAPP
         public ClientRecord GetClientById(string id)
         {
             var conn = new SqliteConnection(connectionString);
-
             conn.Open();
 
             var cmd = conn.CreateCommand();
@@ -310,7 +340,6 @@ namespace ZAPP
             ClientRecord record = new ClientRecord(reader);
 
             conn.Close();
-
             return record;
         }
 

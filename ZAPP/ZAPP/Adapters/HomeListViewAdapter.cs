@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
+﻿using System.Collections.Generic;
 using Android.App;
 using Android.Content;
-using Android.OS;
-using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 
@@ -16,25 +10,25 @@ namespace ZAPP
     public class HomeListViewAdapter : BaseAdapter<ListZorgmomentRecord>
     {
 
-        readonly List<ListZorgmomentRecord> items;
+        readonly List<ListZorgmomentRecord> momenten;
         readonly Activity context;
 
-        public HomeListViewAdapter(Activity context, List<ListZorgmomentRecord> items)
+        public HomeListViewAdapter(Activity context, List<ListZorgmomentRecord> momenten)
             : base()
         {
             this.context = context;
-            this.items = items;
+            this.momenten = momenten;
         }
 
 
         public override ListZorgmomentRecord this[int position]
         {
-            get { return items[position]; }
+            get { return momenten[position]; }
         }
 
         public override int Count
         {
-            get { return items.Count; }
+            get { return momenten.Count; }
         }
 
         public override long GetItemId(int position)
@@ -44,16 +38,20 @@ namespace ZAPP
 
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
-            var item = items[position];
+            var moment = momenten[position];
+            Database db = new Database(context);
+            var client = db.GetClientById(moment.client_id);
+
             View view = convertView;
 
             if (view == null)
             {
                 view = context.LayoutInflater.Inflate(Resource.Layout.ListRow, null);
             }
-            view.FindViewById<TextView>(Resource.Id.Text1).Text = "id: " + item.id;
-            view.FindViewById<TextView>(Resource.Id.Text2).Text = "client_id: " + item.client_id; //naam
-            view.FindViewById<TextView>(Resource.Id.Text3).Text = "datum_tijd: " + item.datum_tijd; //goede format
+            view.FindViewById<TextView>(Resource.Id.TextLeftBig).Text = $"{client.voornaam} {client.achternaam}";
+            view.FindViewById<TextView>(Resource.Id.TextLeftSmall).Text = $"{client.adres}, {client.postcode} {client.woonplaats}";
+            view.FindViewById<TextView>(Resource.Id.TextRightBig).Text = "datum"; //goede format
+            view.FindViewById<TextView>(Resource.Id.TextRightSmall).Text = "tijd"; //goede format
 
             return view;
         }

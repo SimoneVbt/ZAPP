@@ -64,15 +64,19 @@
     <Reference Include="System.Numerics.Vectors" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Activities\Detail.cs" />
+    <Compile Include="Activities\DetailAdres.cs" />
+    <Compile Include="Activities\DetailTaken.cs" />
     <Compile Include="Activities\Login.cs" />
     <Compile Include="Adapters\HomeListViewAdapter.cs" />
-    <Compile Include="Adapters\TakenlijstListViewAdapter.cs" />
+    <Compile Include="Adapters\DetailListViewAdapter.cs" />
+    <Compile Include="Globals\GlobalTaakRecords.cs" />
+    <Compile Include="Globals\GlobalZorgmoment.cs" />
     <Compile Include="Library\ClientRecord.cs" />
     <Compile Include="Library\Database.cs" />
     <Compile Include="Activities\Home.cs" />
     <Compile Include="Activities\SplashActivity.cs" />
     <Compile Include="Library\GebruikerRecord.cs" />
+    <Compile Include="Globals\GlobalClientRecord.cs" />
     <Compile Include="Library\ListClientRecord.cs" />
     <Compile Include="Library\ListTaakRecord.cs" />
     <Compile Include="Library\ListZorgmomentRecord.cs" />
@@ -131,13 +135,16 @@
     <AndroidResource Include="Resources\layout\ListRow.xml" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\Detail.xml" />
+    <AndroidResource Include="Resources\layout\DetailTaken.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\Login.xml" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\login_edittext_border.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\DetailAdres.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
