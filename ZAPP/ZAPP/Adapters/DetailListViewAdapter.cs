@@ -2,6 +2,8 @@
 using Android.App;
 using Android.Views;
 using Android.Widget;
+using Android.Graphics;
+using System;
 
 namespace ZAPP
 {
@@ -10,6 +12,7 @@ namespace ZAPP
     {
         readonly List<ListTaakRecord> taken;
         readonly Activity context;
+        TextView completion;
 
         public DetailListViewAdapter(Activity context, List<ListTaakRecord> taken)
             : base()
@@ -43,11 +46,36 @@ namespace ZAPP
             {
                 view = context.LayoutInflater.Inflate(Resource.Layout.ListRow, null);
             }
-            view.FindViewById<TextView>(Resource.Id.TextLeftBig).Text = $"{taak.stap} - {taak.omschrijving}";
-            view.FindViewById<TextView>(Resource.Id.TextRightBig).Text = "O";
-            view.FindViewById<TextView>(Resource.Id.TextRightBig).TextSize = 20;
+
+            TextView description = view.FindViewById<TextView>(Resource.Id.TextLeftBig);
+            description.Text = $"{taak.stap} - {taak.omschrijving}";
+
+            completion = view.FindViewById<TextView>(Resource.Id.TextRightBig);
+            completion.Text = "O";
+            completion.TextSize = 26;
+            completion.SetTextColor(Color.ParseColor("#aa00ca"));
+
+            completion.Click += CompletionChange;
+
+            view.FindViewById<TextView>(Resource.Id.TextLeftSmall).Visibility = ViewStates.Gone;
+            view.FindViewById<TextView>(Resource.Id.TextRightSmall).Visibility = ViewStates.Gone;
 
             return view;
+        }
+
+        public void CompletionChange(object sender, EventArgs e)
+        {
+            if (completion.Text == "V")
+            {
+                completion.Text = "O";
+                completion.SetTextColor(Color.ParseColor("#aa00ca"));
+            }
+            else
+            {
+                completion.Text = "V";
+                completion.SetTextColor(Color.ParseColor("#00e000"));
+            }
+            
         }
     }
 }

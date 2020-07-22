@@ -8,20 +8,16 @@ namespace ZAPP
     [Activity(Label = "DetailKaart", NoHistory = true)]
     public class DetailKaart : Activity
     {
-        Button homebtn;
-        Button takenbtn;
-        Button adresbtn;
-
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
             SetContentView(Resource.Layout.DetailKaart);
 
-            homebtn = FindViewById<Button>(Resource.Id.HomeButton);
+            Button homebtn = FindViewById<Button>(Resource.Id.HomeButton);
             homebtn.Click += Home;
-            takenbtn = FindViewById<Button>(Resource.Id.TakenButton);
+            Button takenbtn = FindViewById<Button>(Resource.Id.TakenButton);
             takenbtn.Click += DetailTaken;
-            adresbtn = FindViewById<Button>(Resource.Id.AdresButton);
+            Button adresbtn = FindViewById<Button>(Resource.Id.AdresButton);
             adresbtn.Click += DetailAdres;
         }
 

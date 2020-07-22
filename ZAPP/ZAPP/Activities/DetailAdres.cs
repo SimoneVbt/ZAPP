@@ -9,9 +9,6 @@ namespace ZAPP
     public class DetailAdres : Activity
     {
         ClientRecord client;
-        Button homebtn;
-        Button takenbtn;
-        Button kaartbtn;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -23,11 +20,11 @@ namespace ZAPP
             FindViewById<TextView>(Resource.Id.PostcodeWoonplaats).Text = $"{client.postcode} {client.woonplaats}";
             FindViewById<TextView>(Resource.Id.Telefoonnummer).Text = $" Telefoonnummer: {client.telefoonnummer}";
 
-            homebtn = FindViewById<Button>(Resource.Id.HomeButton);
+            Button homebtn = FindViewById<Button>(Resource.Id.HomeButton);
             homebtn.Click += Home;
-            takenbtn = FindViewById<Button>(Resource.Id.TakenButton);
+            Button takenbtn = FindViewById<Button>(Resource.Id.TakenButton);
             takenbtn.Click += DetailTaken;
-            kaartbtn = FindViewById<Button>(Resource.Id.KaartButton);
+            Button kaartbtn = FindViewById<Button>(Resource.Id.KaartButton);
             kaartbtn.Click += DetailKaart;
         }
 

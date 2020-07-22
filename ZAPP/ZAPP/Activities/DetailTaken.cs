@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using Android.App;
+using Android.Content;
 using Android.OS;
 using Android.Widget;
+using Android.Views;
+using static Android.Widget.AdapterView;
 
 namespace ZAPP
 {
@@ -12,9 +15,7 @@ namespace ZAPP
         ListView listview;
         List<ListTaakRecord> taakRecords;
         ZorgmomentRecord zorgmoment;
-        Button homebtn;
-        Button adresbtn;
-        Button kaartbtn;
+        Context context;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -27,13 +28,31 @@ namespace ZAPP
             listview.Adapter = new DetailListViewAdapter(this, taakRecords);
 
             FindViewById<TextView>(Resource.Id.Opmerkingen).Text = zorgmoment.opmerkingen;
+            //listview.ItemClick += CompletionChange;
 
-            homebtn = FindViewById<Button>(Resource.Id.HomeButton);
+            Button homebtn = FindViewById<Button>(Resource.Id.HomeButton);
             homebtn.Click += Home;
-            adresbtn = FindViewById<Button>(Resource.Id.AdresButton);
+            Button adresbtn = FindViewById<Button>(Resource.Id.AdresButton);
             adresbtn.Click += DetailAdres;
-            kaartbtn = FindViewById<Button>(Resource.Id.KaartButton);
+            Button kaartbtn = FindViewById<Button>(Resource.Id.KaartButton);
             kaartbtn.Click += DetailKaart;
+        }
+
+        public void CompletionChange(object sender, ItemClickEventArgs e)
+        {
+            var taak = taakRecords[e.Position];
+            View view = new View(context);
+
+            TextView completion = view.FindViewById<TextView>(Resource.Id.TextRightBig);
+            if (completion.Text == "V")
+            {
+                completion.Text = "O";
+            }
+            else
+            {
+                completion.Text = "V";
+            }
+
         }
 
         public void Home(object sender, EventArgs e)
