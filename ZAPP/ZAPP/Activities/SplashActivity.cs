@@ -15,9 +15,11 @@ namespace ZAPP
             Database db = new Database(this);
             db.CreateDatabase();
 
-            if (db.CheckLogin())
+            DatabaseLogin dbl = new DatabaseLogin(this);
+
+            if (dbl.CheckLogin())
             {
-                record = db.GetGebruiker();
+                record = dbl.GetGebruiker();
                 db.DownloadData(record.id.ToString());
                 StartActivity(typeof(Home));
             }

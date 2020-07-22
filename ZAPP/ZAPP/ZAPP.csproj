@@ -70,9 +70,14 @@
     <Compile Include="Activities\Login.cs" />
     <Compile Include="Adapters\HomeListViewAdapter.cs" />
     <Compile Include="Adapters\DetailListViewAdapter.cs" />
+    <Compile Include="Adapters\PresentButtonAdapter.cs" />
+    <Compile Include="DatabaseLibrary\DatabaseClient.cs" />
+    <Compile Include="DatabaseLibrary\DatabaseLogin.cs" />
+    <Compile Include="DatabaseLibrary\DatabaseTaak.cs" />
+    <Compile Include="DatabaseLibrary\DatabaseZorgmoment.cs" />
     <Compile Include="Global.cs" />
     <Compile Include="Library\ClientRecord.cs" />
-    <Compile Include="Library\Database.cs" />
+    <Compile Include="DatabaseLibrary\Database.cs" />
     <Compile Include="Activities\Home.cs" />
     <Compile Include="Activities\SplashActivity.cs" />
     <Compile Include="Library\GebruikerRecord.cs" />
@@ -150,6 +155,9 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\DetailKaart.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\layout\PresentButton.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

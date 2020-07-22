@@ -7,4 +7,5 @@
 	<color name="green">#00e000</color>
 	<color name="green-selected">#00c000</color>
 	<color name="purple">#aa00ca</color>
+	<color name="textColor">#3D3D3D</color>
 </resources>

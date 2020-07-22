@@ -40,14 +40,14 @@ namespace ZAPP
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
             var moment = momenten[position];
-            Database db = new Database(context);
-            var client = db.GetClientById(moment.client_id);
+            DatabaseClient dbc = new DatabaseClient(context);
+            var client = dbc.GetClientById(moment.client_id);
 
             View view = convertView;
 
             if (view == null)
             {
-                view = context.LayoutInflater.Inflate(Resource.Layout.ListRow, null);
+                view = context.LayoutInflater.Inflate(Resource.Layout.ListRow, parent, false);
             }
 
             CultureInfo Nederlands = new CultureInfo("nl-NL", false);

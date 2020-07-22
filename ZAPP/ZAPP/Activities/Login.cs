@@ -38,8 +38,9 @@ namespace ZAPP
 
             if (result != "-1" && result != null)
             {
+                DatabaseLogin dbl = new DatabaseLogin(this);
+                dbl.Login(result);
                 Database db = new Database(this);
-                db.Login(result);
                 db.DownloadData(result);
                 StartActivity(typeof(Home));
             }

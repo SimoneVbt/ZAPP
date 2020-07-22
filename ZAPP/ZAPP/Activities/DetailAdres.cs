@@ -20,6 +20,9 @@ namespace ZAPP
             FindViewById<TextView>(Resource.Id.PostcodeWoonplaats).Text = $"{client.postcode} {client.woonplaats}";
             FindViewById<TextView>(Resource.Id.Telefoonnummer).Text = $" Telefoonnummer: {client.telefoonnummer}";
 
+            ListView aanwezigbtn = FindViewById<ListView>(Resource.Id.AanwezigButton);
+            aanwezigbtn.Adapter = new PresentButtonAdapter(this);
+
             Button homebtn = FindViewById<Button>(Resource.Id.HomeButton);
             homebtn.Click += Home;
             Button takenbtn = FindViewById<Button>(Resource.Id.TakenButton);

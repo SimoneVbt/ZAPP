@@ -60,7 +60,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dip"
-        android:layout_rowWeight="5"
+        android:layout_rowWeight="4"
         android:layout_gravity="fill_horizontal"
         android:orientation="vertical"
         android:padding="10dip"
@@ -71,6 +71,7 @@
             android:layout_height="wrap_content"
             android:textSize="20dip"
             android:textStyle="bold"
+            android:textColor="@color/textColor"
             android:padding="5dip"
             />
         <TextView
@@ -79,6 +80,7 @@
             android:layout_height="wrap_content"
             android:textSize="20dip"
             android:textStyle="bold"
+            android:textColor="@color/textColor"
             android:padding="5dip"
             />
         <TextView
@@ -87,6 +89,7 @@
             android:layout_height="wrap_content"
             android:textSize="20dip"
             android:textStyle="bold"
+            android:textColor="@color/textColor"
             android:paddingLeft="5dip"
             android:paddingTop="50dip"
             />
@@ -100,17 +103,16 @@
         android:layout_rowWeight="2"
         android:textSize="18dip"
         android:textStyle="bold"
+        android:textColor="@color/textColor"
         android:paddingLeft="15dip"
         />
         
-    <Button
+    <ListView
         android:id="@+id/AanwezigButton"
-        android:textAlignment="center"
         android:layout_rowWeight="1"
         android:layout_width="0dip"
         android:layout_height="0dip"
         android:layout_gravity="fill_horizontal"
-        android:background="@color/green"
         />
 
 </GridLayout>

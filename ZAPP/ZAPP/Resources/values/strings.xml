@@ -2,6 +2,10 @@
 	
     <string name="app_version">0.11</string>
     <string name="app_name">ZAPP</string>
+
+	<string name="aanwezigheid">Meld me aanwezig</string>
+	<string name="aanwezigheid_aan">Aanwezig</string>
+	<string name="aanwezigheid_uit">Aanwezigheid opgeslagen</string>
 	
 	<string name="image-description-logo">Het ZAPP-logo</string>
 	<string name="image-map">Kaart van Zuid-Limburg</string>

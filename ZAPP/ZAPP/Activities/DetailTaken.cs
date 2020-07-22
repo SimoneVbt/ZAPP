@@ -1,21 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using Android.App;
-using Android.Content;
 using Android.OS;
 using Android.Widget;
-using Android.Views;
-using static Android.Widget.AdapterView;
 
 namespace ZAPP
 {
     [Activity(Label = "DetailTaken", NoHistory = true)]
     public class DetailTaken : Activity
     {
-        ListView listview;
         List<ListTaakRecord> taakRecords;
         ZorgmomentRecord zorgmoment;
-        Context context;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -24,11 +19,12 @@ namespace ZAPP
             zorgmoment = Global.zorgmoment;
 
             SetContentView(Resource.Layout.DetailTaken);
-            listview = FindViewById<ListView>(Resource.Id.Takenlijst);
+            ListView listview = FindViewById<ListView>(Resource.Id.Takenlijst);
             listview.Adapter = new DetailListViewAdapter(this, taakRecords);
+            ListView aanwezigbtn = FindViewById<ListView>(Resource.Id.AanwezigButton);
+            aanwezigbtn.Adapter = new PresentButtonAdapter(this);
 
             FindViewById<TextView>(Resource.Id.Opmerkingen).Text = zorgmoment.opmerkingen;
-            //listview.ItemClick += CompletionChange;
 
             Button homebtn = FindViewById<Button>(Resource.Id.HomeButton);
             homebtn.Click += Home;
@@ -36,23 +32,6 @@ namespace ZAPP
             adresbtn.Click += DetailAdres;
             Button kaartbtn = FindViewById<Button>(Resource.Id.KaartButton);
             kaartbtn.Click += DetailKaart;
-        }
-
-        public void CompletionChange(object sender, ItemClickEventArgs e)
-        {
-            var taak = taakRecords[e.Position];
-            View view = new View(context);
-
-            TextView completion = view.FindViewById<TextView>(Resource.Id.TextRightBig);
-            if (completion.Text == "V")
-            {
-                completion.Text = "O";
-            }
-            else
-            {
-                completion.Text = "V";
-            }
-
         }
 
         public void Home(object sender, EventArgs e)

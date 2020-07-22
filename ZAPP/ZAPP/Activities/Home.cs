@@ -10,7 +10,7 @@ namespace ZAPP
     [Activity(Label = "Home")]
     public class Home : Activity
     {
-        Database db;
+        DatabaseZorgmoment dbz;
         ListView listview;
         List<ListZorgmomentRecord> momentRecords;
         ArrayList result;
@@ -22,8 +22,8 @@ namespace ZAPP
         {
             base.OnCreate(bundle);
 
-            db = new Database(this);
-            result = db.GetAllZorgmomenten();
+            dbz = new DatabaseZorgmoment(this);
+            result = dbz.GetAllZorgmomenten();
             momentRecords = new List<ListZorgmomentRecord>();
 
             foreach (ZorgmomentRecord value in result)
@@ -44,13 +44,15 @@ namespace ZAPP
         protected void OnListItemClick(object sender, AdapterView.ItemClickEventArgs e)
         {
             var moment = momentRecords[e.Position];
-            ZorgmomentRecord moment_record = db.GetZorgmomentById(moment.id);
+            ZorgmomentRecord moment_record = dbz.GetZorgmomentById(moment.id);
             Global.zorgmoment = moment_record;
 
-            ClientRecord client = db.GetClientById(moment_record.client_id.ToString());
+            DatabaseClient dbc = new DatabaseClient(this);
+            ClientRecord client = dbc.GetClientById(moment_record.client_id.ToString());
             Global.client = client;
 
-            taken = db.GetTakenByZorgmoment(moment.id);
+            DatabaseTaak dbt = new DatabaseTaak(this);
+            taken = dbt.GetTakenByZorgmoment(moment.id);
             taakRecords = new List<ListTaakRecord>();
             foreach (TaakRecord taak in taken)
             {
@@ -64,7 +66,8 @@ namespace ZAPP
 
         public void Logout(object sender, EventArgs e)
         {
-            db.Logout();
+            DatabaseLogin dbl = new DatabaseLogin(this);
+            dbl.Logout();
             StartActivity(typeof(Login));
         }
     }

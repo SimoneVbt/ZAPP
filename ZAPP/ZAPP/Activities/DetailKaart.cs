@@ -12,6 +12,8 @@ namespace ZAPP
         {
             base.OnCreate(bundle);
             SetContentView(Resource.Layout.DetailKaart);
+            ListView aanwezigbtn = FindViewById<ListView>(Resource.Id.AanwezigButton);
+            aanwezigbtn.Adapter = new PresentButtonAdapter(this);
 
             Button homebtn = FindViewById<Button>(Resource.Id.HomeButton);
             homebtn.Click += Home;
