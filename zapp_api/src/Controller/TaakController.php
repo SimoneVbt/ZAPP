@@ -25,7 +25,7 @@ class TaakController extends AbstractController
     /**
      * @Route("/update/{taak_id}", name="update_taak")
      */
-    public function updateTaak($taak_id)
+    public function updateTaak(Request $request, $taak_id)
     {
         $params = $request->request->all();
         $params["id"] = $taak_id;

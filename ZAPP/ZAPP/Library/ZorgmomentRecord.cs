@@ -12,6 +12,7 @@ namespace ZAPP
         public string opmerkingen;
         public string aanwezigheid_begin;
         public string aanwezigheid_eind;
+        public int nieuw;
 
         public ZorgmomentRecord(JsonValue record)
         {
@@ -31,6 +32,7 @@ namespace ZAPP
             opmerkingen = (string) record["opmerkingen"];
             aanwezigheid_begin = (string) record["aanwezigheid_begin"];
             aanwezigheid_eind = (string) record["aanwezigheid_eind"];
+            nieuw = (int)(Int32) record["nieuw"];
         }
     }
 

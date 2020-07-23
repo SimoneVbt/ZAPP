@@ -8,12 +8,12 @@ namespace ZAPP
     [Activity(Label = "DetailAdres", NoHistory = true)]
     public class DetailAdres : Activity
     {
-        ClientRecord client;
 
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
-            client = Global.client;
+            DatabaseClient dbc = new DatabaseClient(this);
+            ClientRecord client = dbc.GetClientById(Global.zorgmoment.client_id.ToString());
 
             SetContentView(Resource.Layout.DetailAdres);
             FindViewById<TextView>(Resource.Id.Adres).Text = $"{client.adres}";

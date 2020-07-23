@@ -3,7 +3,6 @@ using System.Text;
 using System.IO;
 using System.Net;
 using System.Json;
-using System.Collections;
 using System.Data;
 using Mono.Data.Sqlite;
 using Android.Content;
@@ -16,8 +15,8 @@ namespace ZAPP
         private readonly Context context;
         private readonly string dbpath;
         private readonly string connectionString;
-        private readonly string url = "http://192.168.0.109/zapp/zapp_api/public/index.php/api/zorgmoment/get/";
-        //private readonly string url = "http://192.168.1.244/zapp/zapp_api/public/index.php/api/zorgmoment/get/";
+        //private readonly string url = "http://192.168.0.109/zapp/zapp_api/public/index.php/api/zorgmoment/get/";
+        private readonly string url = "http://192.168.1.244/zapp/zapp_api/public/index.php/api/zorgmoment/get/";
 
         public Database(Context context)
         {

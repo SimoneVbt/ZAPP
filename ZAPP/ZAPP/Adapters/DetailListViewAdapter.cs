@@ -48,7 +48,6 @@ namespace ZAPP
 
             TextView description = view.FindViewById<TextView>(Resource.Id.TextLeftBig);
             description.Text = $"{taak.stap} - {taak.omschrijving}";
-
             TextView completion = view.FindViewById<TextView>(Resource.Id.TextRightBig);
             completion.TextSize = 30;
 
@@ -56,6 +55,8 @@ namespace ZAPP
             {
                 case "0":
                     completion.Text = "O";
+                    completion.SetTextColor(Color.ParseColor("#3D3D3D"));
+                    description.SetTextColor(Color.ParseColor("#3D3D3D"));
                     break;
                 case "1":
                     completion.Text = "V";

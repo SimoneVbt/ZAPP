@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Text;
 using System.IO;
-using System.Net;
-using System.Json;
 using System.Collections;
 using System.Data;
 using Mono.Data.Sqlite;
 using Android.Content;
 using Android.Content.Res;
-
+using System.Net.Http;
+using System.Collections.Generic;
 
 namespace ZAPP
 {
@@ -16,6 +14,8 @@ namespace ZAPP
     {
         private readonly Context context;
         private readonly string connectionString;
+        //private readonly string url = "http://192.168.0.109/zapp/zapp_api/public/index.php/api/zorgmoment/update/";
+        private readonly string url = "http://192.168.1.244/zapp/zapp_api/public/index.php/api/zorgmoment/update/";
 
         public DatabaseZorgmoment(Context context)
         {
@@ -29,17 +29,24 @@ namespace ZAPP
             connectionString = $"Data Source={dbpath};Version=3;";
         }
 
-        public void UpdateAanwezigheid(string taak_id, string begin_of_eind, string tijdstip)
+        public async void UpdateAanwezigheid(string moment_id, string begin_of_eind, string tijdstip)
         {
             var conn = new SqliteConnection(connectionString);
             conn.Open();
 
             var cmd = conn.CreateCommand();
-            cmd.CommandText = $"UPDATE zorgmoment SET aanwezigheid_{begin_of_eind} = {tijdstip} WHERE id = {taak_id}";
+            cmd.CommandText = $"UPDATE zorgmoment SET aanwezigheid_{begin_of_eind} = '{tijdstip}' WHERE id = {moment_id}";
             cmd.CommandType = CommandType.Text;
             cmd.ExecuteNonQuery();
 
             conn.Close();
+
+            HttpClient client = new HttpClient();
+            HttpContent content = new FormUrlEncodedContent(new[]{
+                new KeyValuePair<string, string>("aanwezigheid_" + begin_of_eind, tijdstip)
+            });
+            string momentUrl = url + moment_id;
+            await client.PostAsync(momentUrl, content);
         }
 
         public void InsertZorgmomenten(ZorgmomentRecord record)

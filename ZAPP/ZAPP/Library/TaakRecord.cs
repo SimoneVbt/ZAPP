@@ -2,7 +2,6 @@
 using System.Json;
 using Mono.Data.Sqlite;
 
-
 namespace ZAPP
 {
     public class TaakRecord

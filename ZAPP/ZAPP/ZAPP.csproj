@@ -81,7 +81,6 @@
     <Compile Include="Activities\Home.cs" />
     <Compile Include="Activities\SplashActivity.cs" />
     <Compile Include="Library\GebruikerRecord.cs" />
-    <Compile Include="Library\ListClientRecord.cs" />
     <Compile Include="Library\ListTaakRecord.cs" />
     <Compile Include="Library\ListZorgmomentRecord.cs" />
     <Compile Include="Library\TaakRecord.cs" />

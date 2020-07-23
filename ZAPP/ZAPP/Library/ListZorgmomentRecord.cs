@@ -1,16 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-
-namespace ZAPP
+﻿namespace ZAPP
 {
     public class ListZorgmomentRecord
     {
@@ -20,8 +8,9 @@ namespace ZAPP
         public string opmerkingen;
         public string aanwezigheid_begin;
         public string aanwezigheid_eind;
+        public string nieuw;
 
-        public ListZorgmomentRecord (string id, string client_id, string datum_tijd, string opmerkingen, string aanwezigheid_begin, string aanwezigheid_eind)
+        public ListZorgmomentRecord (string id, string client_id, string datum_tijd, string opmerkingen, string aanwezigheid_begin, string aanwezigheid_eind, string nieuw)
         {
             this.id = id;
             this.client_id = client_id;
@@ -29,6 +18,7 @@ namespace ZAPP
             this.opmerkingen = opmerkingen;
             this.aanwezigheid_begin = aanwezigheid_begin;
             this.aanwezigheid_eind = aanwezigheid_eind;
+            this.nieuw = nieuw;
         }
     }
 }

@@ -47,7 +47,7 @@ class ZorgmomentController extends AbstractController
     /**
      * @Route("/update/{moment_id}", name="update_zorgmoment")
      */
-    public function updateZorgmoment($moment_id)
+    public function updateZorgmoment(Request $request, $moment_id)
     {
         $params = $request->request->all();
         $params["id"] = $moment_id;

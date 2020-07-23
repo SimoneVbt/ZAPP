@@ -14,8 +14,6 @@ namespace ZAPP
         ListView listview;
         List<ListZorgmomentRecord> momentRecords;
         ArrayList result;
-        List<ListTaakRecord> taakRecords;
-        ArrayList taken;
         Button logout;
 
         protected override void OnCreate(Bundle bundle)
@@ -28,7 +26,7 @@ namespace ZAPP
 
             foreach (ZorgmomentRecord value in result)
             {
-                ListZorgmomentRecord row = new ListZorgmomentRecord(value.id.ToString(), value.client_id.ToString(), Convert.ToString(value.datum_tijd), value.opmerkingen, Convert.ToString(value.aanwezigheid_begin), Convert.ToString(value.aanwezigheid_eind));
+                ListZorgmomentRecord row = new ListZorgmomentRecord(value.id.ToString(), value.client_id.ToString(), Convert.ToString(value.datum_tijd), value.opmerkingen, Convert.ToString(value.aanwezigheid_begin), Convert.ToString(value.aanwezigheid_eind), value.nieuw.ToString());
                 momentRecords.Add(row);
             }
 
@@ -46,20 +44,6 @@ namespace ZAPP
             var moment = momentRecords[e.Position];
             ZorgmomentRecord moment_record = dbz.GetZorgmomentById(moment.id);
             Global.zorgmoment = moment_record;
-
-            DatabaseClient dbc = new DatabaseClient(this);
-            ClientRecord client = dbc.GetClientById(moment_record.client_id.ToString());
-            Global.client = client;
-
-            DatabaseTaak dbt = new DatabaseTaak(this);
-            taken = dbt.GetTakenByZorgmoment(moment.id);
-            taakRecords = new List<ListTaakRecord>();
-            foreach (TaakRecord taak in taken)
-            {
-                ListTaakRecord row = new ListTaakRecord(taak.id.ToString(), taak.zorgmoment_id.ToString(), taak.stap.ToString(), taak.omschrijving, taak.voltooid.ToString());
-                taakRecords.Add(row);
-            }
-            Global.taakRecords = taakRecords;
 
             StartActivity(typeof(DetailTaken));
         }

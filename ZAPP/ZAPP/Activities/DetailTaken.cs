@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Android.App;
 using Android.OS;
@@ -8,48 +9,48 @@ namespace ZAPP
 {
     [Activity(Label = "DetailTaken", NoHistory = true)]
     public class DetailTaken : Activity
-    {
+    {   
+        ArrayList taken;
         List<ListTaakRecord> taakRecords;
-        ZorgmomentRecord zorgmoment;
+        
 
         protected override void OnCreate(Bundle bundle)
         {
             base.OnCreate(bundle);
-            taakRecords = Global.taakRecords;
-            zorgmoment = Global.zorgmoment;
+
+            DatabaseTaak dbt = new DatabaseTaak(this);
+            taken = dbt.GetTakenByZorgmoment(Global.zorgmoment.id.ToString());
+            taakRecords = new List<ListTaakRecord>();
+            foreach (TaakRecord taak in taken)
+            {
+                ListTaakRecord row = new ListTaakRecord(taak.id.ToString(), taak.zorgmoment_id.ToString(), taak.stap.ToString(), taak.omschrijving, taak.voltooid.ToString());
+                taakRecords.Add(row);
+            }
 
             SetContentView(Resource.Layout.DetailTaken);
             ListView listview = FindViewById<ListView>(Resource.Id.Takenlijst);
             listview.Adapter = new DetailListViewAdapter(this, taakRecords);
             ListView aanwezigbtn = FindViewById<ListView>(Resource.Id.AanwezigButton);
             aanwezigbtn.Adapter = new PresentButtonAdapter(this);
-
-            FindViewById<TextView>(Resource.Id.Opmerkingen).Text = zorgmoment.opmerkingen;
+            FindViewById<TextView>(Resource.Id.Opmerkingen).Text = Global.zorgmoment.opmerkingen;
 
             Button homebtn = FindViewById<Button>(Resource.Id.HomeButton);
-            homebtn.Click += Home;
+            homebtn.Click += (object sender, EventArgs e) =>
+            {
+                StartActivity(typeof(Home));
+            };
             Button adresbtn = FindViewById<Button>(Resource.Id.AdresButton);
-            adresbtn.Click += DetailAdres;
+            adresbtn.Click += (object sender, EventArgs e) =>
+            {
+                StartActivity(typeof(DetailAdres));
+                OverridePendingTransition(0, 0);
+            };
             Button kaartbtn = FindViewById<Button>(Resource.Id.KaartButton);
-            kaartbtn.Click += DetailKaart;
+            kaartbtn.Click += (object sender, EventArgs e) =>
+            {
+                StartActivity(typeof(DetailKaart));
+                OverridePendingTransition(0, 0);
+            };
         }
-
-        public void Home(object sender, EventArgs e)
-        {
-            StartActivity(typeof(Home));
-        }
-
-        public void DetailAdres(object sender, EventArgs e)
-        {
-            StartActivity(typeof(DetailAdres));
-            OverridePendingTransition(0, 0);
-        }
-
-        public void DetailKaart(object sender, EventArgs e)
-        {
-            StartActivity(typeof(DetailKaart));
-            OverridePendingTransition(0, 0);
-        }
-
     }
 }

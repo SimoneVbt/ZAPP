@@ -5,6 +5,8 @@ using System.Data;
 using Mono.Data.Sqlite;
 using Android.Content;
 using Android.Content.Res;
+using System.Net.Http;
+using System.Collections.Generic;
 
 namespace ZAPP
 {
@@ -12,6 +14,8 @@ namespace ZAPP
     {
         private readonly Context context;
         private readonly string connectionString;
+        //private readonly string url = "http://192.168.0.109/zapp/zapp_api/public/index.php/api/taak/update/";
+        private readonly string url = "http://192.168.1.244/zapp/zapp_api/public/index.php/api/taak/update/";
 
         public DatabaseTaak (Context context)
         {
@@ -25,7 +29,7 @@ namespace ZAPP
             connectionString = $"Data Source={dbpath};Version=3;";
         }
 
-        public void UpdateTaak(string taak_id, string voltooid_bool)
+        public async void UpdateTaak(string taak_id, string voltooid_bool)
         {
             var conn = new SqliteConnection(connectionString);
             conn.Open();
@@ -36,6 +40,13 @@ namespace ZAPP
             cmd.ExecuteNonQuery();
 
             conn.Close();
+
+            HttpClient client = new HttpClient();
+            HttpContent content = new FormUrlEncodedContent(new[]{
+                new KeyValuePair<string, string>("voltooid", voltooid_bool)
+            });
+            string taakUrl = url + taak_id;
+            await client.PostAsync(taakUrl, content);
         }
 
         public void InsertTaken(TaakRecord record)
