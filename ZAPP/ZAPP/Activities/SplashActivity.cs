@@ -7,7 +7,7 @@ namespace ZAPP
     [Activity(Theme = "@style/Theme.Splash", MainLauncher = true, NoHistory = true)]
     public class SplashActivity : Activity
     {
-        private GebruikerRecord record;
+        private GebruikerRecord gebruiker;
 
         protected override void OnCreate(Bundle bundle)
         {
@@ -16,11 +16,13 @@ namespace ZAPP
             db.CreateDatabase();
 
             DatabaseLogin dbl = new DatabaseLogin(this);
+            DatabaseZorgmoment dbz = new DatabaseZorgmoment(this);
 
             if (dbl.CheckLogin())
             {
-                record = dbl.GetGebruiker();
-                db.DownloadData(record.id.ToString());
+                gebruiker = dbl.GetGebruiker();
+                dbz.UpdateZorgmomenten();
+                db.DownloadData(gebruiker.id.ToString());
                 StartActivity(typeof(Home));
             }
             else

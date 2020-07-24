@@ -34,6 +34,7 @@ namespace ZAPP
             aanwezigbtn.Adapter = new PresentButtonAdapter(this);
             FindViewById<TextView>(Resource.Id.Opmerkingen).Text = Global.zorgmoment.opmerkingen;
 
+
             Button homebtn = FindViewById<Button>(Resource.Id.HomeButton);
             homebtn.Click += (object sender, EventArgs e) =>
             {

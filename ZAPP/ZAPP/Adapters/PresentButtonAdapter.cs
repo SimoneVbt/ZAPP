@@ -59,21 +59,38 @@ namespace ZAPP
 
             if (zorgmoment.aanwezigheid_begin != "" && zorgmoment.aanwezigheid_eind == "")
             {
-                dbz.UpdateAanwezigheid(zorgmoment.id.ToString(), "eind", tijdstip.ToString());
-                ZorgmomentRecord moment_record = dbz.GetZorgmomentById(zorgmoment.id.ToString());
-                Global.zorgmoment = moment_record;
+                new AlertDialog.Builder(context)
+                    .SetTitle("Afmelden")
+                    .SetMessage("Wilt u zich afmelden bij deze cliënt?")
+                    .SetPositiveButton("Ja", (sender, args) =>
+                    {
+                        dbz.UpdateAanwezigheid(zorgmoment.id.ToString(), "eind", tijdstip.ToString());
+                        ZorgmomentRecord moment_record = dbz.GetZorgmomentById(zorgmoment.id.ToString());
+                        Global.zorgmoment = moment_record;
 
-                aanwezigheid.SetBackgroundColor(Color.ParseColor("#aa00ca"));
-                aanwezigheid.SetTextColor(Color.ParseColor("#FFFFFF"));
-                aanwezigheid.Text = res.GetString(Resource.String.aanwezigheid_uit);
+                        aanwezigheid.SetBackgroundColor(Color.ParseColor("#aa00ca"));
+                        aanwezigheid.SetTextColor(Color.ParseColor("#FFFFFF"));
+                        aanwezigheid.Text = res.GetString(Resource.String.aanwezigheid_uit);
+                    })
+                    .SetNegativeButton("Nee", (sender, args) => { })
+                    .Show();
+
             }
             else if (zorgmoment.aanwezigheid_begin == "")
             {
-                dbz.UpdateAanwezigheid(zorgmoment.id.ToString(), "begin", tijdstip.ToString());
-                ZorgmomentRecord moment_record = dbz.GetZorgmomentById(zorgmoment.id.ToString());
-                Global.zorgmoment = moment_record;
-                aanwezigheid.SetBackgroundColor(Color.ParseColor("#00c000"));
-                aanwezigheid.Text = res.GetString(Resource.String.aanwezigheid_aan);
+                new AlertDialog.Builder(context)
+                    .SetTitle("Aanmelden")
+                    .SetMessage("Wilt u zich aanwezig melden bij deze cliënt?")
+                    .SetPositiveButton("Ja", (sender, args) =>
+                    {
+                        dbz.UpdateAanwezigheid(zorgmoment.id.ToString(), "begin", tijdstip.ToString());
+                        ZorgmomentRecord moment_record = dbz.GetZorgmomentById(zorgmoment.id.ToString());
+                        Global.zorgmoment = moment_record;
+                        aanwezigheid.SetBackgroundColor(Color.ParseColor("#00c000"));
+                        aanwezigheid.Text = res.GetString(Resource.String.aanwezigheid_aan);
+                    })
+                    .SetNegativeButton("Nee", (sender, args) => { })
+                    .Show();
             }
         }
 

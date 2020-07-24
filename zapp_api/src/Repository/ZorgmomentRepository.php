@@ -40,12 +40,17 @@ class ZorgmomentRepository extends ServiceEntityRepository
     }
 
 
-    public function getZorgmomentenByGebruiker($user_id)
+    public function getZorgmomentenByGebruiker($user_id, $today, $tomorrow)
     {
+        $today = $today->format('Y-m-d');
+        $tomorrow = $tomorrow->format('Y-m-d');
+        
         $momenten = $this->createQueryBuilder("z")
                     ->where("z.gebruiker_id = $user_id")
-                    ->orderBy("z.datum_tijd", "DESC")
-                    ->setMaxResults(30) //straks vervangen door enkel vandaag en morgen
+                    ->andWhere("z.datum_tijd BETWEEN :today AND :tomorrow")
+                    ->setParameter("today", $today)
+                    ->setParameter("tomorrow", $tomorrow)
+                    ->orderBy("z.datum_tijd", "ASC")
                     ->getQuery()
                     ->getResult()
                     ;

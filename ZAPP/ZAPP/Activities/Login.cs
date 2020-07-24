@@ -10,8 +10,8 @@ namespace ZAPP
     [Activity(Label = "Login", NoHistory = true)]
     public class Login : Activity
     {
-        //private readonly string url = "http://192.168.0.109/zapp/zapp_api/public/index.php/api/gebruiker/login";
-        private readonly string url = "http://192.168.1.244/zapp/zapp_api/public/index.php/api/gebruiker/login";
+        private readonly string url = "http://192.168.0.109/zapp/zapp_api/public/index.php/api/gebruiker/login";
+        //private readonly string url = "http://192.168.1.244/zapp/zapp_api/public/index.php/api/gebruiker/login";
         Button login;
 
         protected override void OnCreate(Bundle bundle)
@@ -40,6 +40,8 @@ namespace ZAPP
             {
                 DatabaseLogin dbl = new DatabaseLogin(this);
                 dbl.Login(result);
+                DatabaseZorgmoment dbz = new DatabaseZorgmoment(this);
+                dbz.UpdateZorgmomenten();
                 Database db = new Database(this);
                 db.DownloadData(result);
                 StartActivity(typeof(Home));

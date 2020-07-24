@@ -15,8 +15,8 @@ namespace ZAPP
         private readonly Context context;
         private readonly string dbpath;
         private readonly string connectionString;
-        //private readonly string url = "http://192.168.0.109/zapp/zapp_api/public/index.php/api/zorgmoment/get/";
-        private readonly string url = "http://192.168.1.244/zapp/zapp_api/public/index.php/api/zorgmoment/get/";
+        private readonly string url = "http://192.168.0.109/zapp/zapp_api/public/index.php/api/zorgmoment/get/";
+        //private readonly string url = "http://192.168.1.244/zapp/zapp_api/public/index.php/api/zorgmoment/get/";
 
         public Database(Context context)
         {
@@ -78,12 +78,12 @@ namespace ZAPP
 
                 foreach(JsonObject result in value)
                 {
-                    ClientRecord clientRecord = new ClientRecord(result);
                     DatabaseClient dbc = new DatabaseClient(context);
+                    ClientRecord clientRecord = new ClientRecord(result);
                     dbc.InsertClientData(clientRecord);
 
-                    ZorgmomentRecord momentRecord = new ZorgmomentRecord(result);
                     DatabaseZorgmoment dbz = new DatabaseZorgmoment(context);
+                    ZorgmomentRecord momentRecord = new ZorgmomentRecord(result);
                     dbz.InsertZorgmomenten(momentRecord);
 
                     DatabaseTaak dbt = new DatabaseTaak(context);

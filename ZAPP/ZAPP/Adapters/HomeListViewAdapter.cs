@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using Android.App;
+using Android.Graphics;
 using Android.Views;
 using Android.Widget;
 
@@ -19,22 +20,6 @@ namespace ZAPP
         {
             this.context = context;
             this.momenten = momenten;
-        }
-
-
-        public override ListZorgmomentRecord this[int position]
-        {
-            get { return momenten[position]; }
-        }
-
-        public override int Count
-        {
-            get { return momenten.Count; }
-        }
-
-        public override long GetItemId(int position)
-        {
-            return position;
         }
 
         public override View GetView(int position, View convertView, ViewGroup parent)
@@ -61,8 +46,29 @@ namespace ZAPP
             view.FindViewById<TextView>(Resource.Id.TextRightBig).Text = dateString;
             view.FindViewById<TextView>(Resource.Id.TextRightSmall).Text = timeString;
 
+            if (moment.nieuw == "1")
+            {
+                LinearLayout row = view.FindViewById<LinearLayout>(Resource.Id.ListViewRow);
+                row.SetBackgroundColor(Color.ParseColor("#FF6eC7"));
+            }
+
             return view;
         }
-         
+
+        public override ListZorgmomentRecord this[int position]
+        {
+            get { return momenten[position]; }
+        }
+
+        public override int Count
+        {
+            get { return momenten.Count; }
+        }
+
+        public override long GetItemId(int position)
+        {
+            return position;
+        }
+
     }
 }

@@ -1,12 +1,12 @@
 ﻿using System;
 using System.IO;
-using System.Collections;
 using System.Data;
+using System.Net.Http;
+using System.Collections;
+using System.Collections.Generic;
 using Mono.Data.Sqlite;
 using Android.Content;
 using Android.Content.Res;
-using System.Net.Http;
-using System.Collections.Generic;
 
 namespace ZAPP
 {
@@ -14,8 +14,8 @@ namespace ZAPP
     {
         private readonly Context context;
         private readonly string connectionString;
-        //private readonly string url = "http://192.168.0.109/zapp/zapp_api/public/index.php/api/zorgmoment/update/";
-        private readonly string url = "http://192.168.1.244/zapp/zapp_api/public/index.php/api/zorgmoment/update/";
+        private readonly string url = "http://192.168.0.109/zapp/zapp_api/public/index.php/api/zorgmoment/update/";
+        //private readonly string url = "http://192.168.1.244/zapp/zapp_api/public/index.php/api/zorgmoment/update/";
 
         public DatabaseZorgmoment(Context context)
         {
@@ -27,6 +27,45 @@ namespace ZAPP
             string dbname = "db_" + app_name + "_" + app_version + ".sqlite";
             string dbpath = Path.Combine(documentsPath, dbname);
             connectionString = $"Data Source={dbpath};Version=3;";
+        }
+
+        public void UpdateZorgmomenten()
+        {
+            DeleteOldRecords();
+            RemoveNieuwOnLogin();
+        }
+
+        public void DeleteOldRecords()
+        {
+            var conn = new SqliteConnection(connectionString);
+            conn.Open();
+
+            string today = DateTime.Today.ToString("yyyy-MM-dd");
+
+            var cmd = conn.CreateCommand();
+            cmd.CommandText = $"DELETE FROM zorgmoment WHERE datum_tijd < '{today}'";
+            cmd.CommandType = CommandType.Text;
+            cmd.ExecuteNonQuery();
+
+            conn.Close();
+        }
+
+        public void RemoveNieuwOnLogin()
+        {
+            ArrayList zorgmomenten = GetAllZorgmomenten();
+
+            var conn = new SqliteConnection(connectionString);
+            conn.Open();
+
+            foreach (ZorgmomentRecord moment in zorgmomenten)
+            {
+                var cmd = conn.CreateCommand();
+                cmd.CommandText = $"UPDATE zorgmoment SET nieuw = 0 WHERE id = {moment.id}";
+                cmd.CommandType = CommandType.Text;
+                cmd.ExecuteNonQuery();
+            }
+
+            conn.Close();
         }
 
         public async void UpdateAanwezigheid(string moment_id, string begin_of_eind, string tijdstip)
@@ -66,8 +105,8 @@ namespace ZAPP
             }
             else
             {
-                cmd.CommandText = "INSERT INTO zorgmoment (id, client_id, datum_tijd, opmerkingen, aanwezigheid_begin, aanwezigheid_eind) " +
-                    $"VALUES ({record.id}, {record.client_id}, '{record.datum_tijd}', '{record.opmerkingen}', '{record.aanwezigheid_begin}', '{record.aanwezigheid_eind}')";
+                cmd.CommandText = "INSERT INTO zorgmoment (id, client_id, datum_tijd, opmerkingen, aanwezigheid_begin, aanwezigheid_eind, nieuw) " +
+                    $"VALUES ({record.id}, {record.client_id}, '{record.datum_tijd}', '{record.opmerkingen}', '{record.aanwezigheid_begin}', '{record.aanwezigheid_eind}', 1)";
             }
             cmd.CommandType = CommandType.Text;
             cmd.ExecuteNonQuery();
@@ -82,7 +121,7 @@ namespace ZAPP
             conn.Open();
 
             var cmd = conn.CreateCommand();
-            cmd.CommandText = "SELECT * FROM zorgmoment";
+            cmd.CommandText = "SELECT * FROM zorgmoment ORDER BY datum_tijd ASC";
             cmd.CommandType = CommandType.Text;
             SqliteDataReader reader = cmd.ExecuteReader();
 

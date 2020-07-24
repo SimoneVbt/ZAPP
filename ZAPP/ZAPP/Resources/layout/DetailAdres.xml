@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?> 
+﻿ 
 <GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -60,38 +60,46 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dip"
-        android:layout_rowWeight="4"
-        android:layout_gravity="fill_horizontal"
+        android:layout_rowWeight="3"
         android:orientation="vertical"
         android:padding="10dip"
+        android:background="@drawable/login_edittext_border"
+        android:layout_marginLeft="5dip"
+        android:layout_marginRight="5dip"
+        android:layout_marginTop="5dip"
         >
         <TextView
-            android:id="@+id/Adres"
-            android:layout_width="match_parent"
+            android:id="@+id/Naam"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20dip"
             android:textStyle="bold"
             android:textColor="@color/textColor"
-            android:padding="5dip"
+            />
+        <TextView
+            android:id="@+id/Adres"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dip"
+            android:textStyle="bold"
+            android:textColor="@color/textColor"
             />
         <TextView
             android:id="@+id/PostcodeWoonplaats" 
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20dip"
             android:textStyle="bold"
             android:textColor="@color/textColor"
-            android:padding="5dip"
             />
         <TextView
             android:id="@+id/Telefoonnummer" 
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="20dip"
             android:textStyle="bold"
             android:textColor="@color/textColor"
-            android:paddingLeft="5dip"
-            android:paddingTop="50dip"
+            android:paddingTop="16dip"
             />
     </LinearLayout>
         
@@ -100,12 +108,45 @@
         android:text="@string/planning"
         android:layout_width="match_parent"
         android:layout_height="0dip"
-        android:layout_rowWeight="2"
+        android:layout_rowWeight="1"
         android:textSize="18dip"
         android:textStyle="bold"
         android:textColor="@color/textColor"
-        android:paddingLeft="15dip"
+        android:paddingLeft="10dip"
+        android:paddingTop="15dip"
         />
+
+    <ScrollView
+        android:layout_rowWeight="2"
+		android:layout_width="0dip"
+		android:layout_height="0dip"
+        android:layout_gravity="fill_horizontal"
+        android:paddingLeft="10dip"
+        android:paddingTop="10dip"
+        android:paddingRight="10dip"
+		>
+        <LinearLayout
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+		    <TextView
+		        android:text="@string/opmerkingen"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+                android:textSize="18dip"
+			    android:textStyle="bold"
+                android:textColor="@color/textColor"
+		        />
+            <TextView
+		        android:id="@+id/Opmerkingen"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+                android:textSize="18dip"
+                android:textColor="@color/textColor"
+		        />
+        </LinearLayout>
+	</ScrollView>
         
     <ListView
         android:id="@+id/AanwezigButton"

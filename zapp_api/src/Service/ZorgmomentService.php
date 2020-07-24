@@ -26,7 +26,11 @@ class ZorgmomentService
 
     public function getZorgmomentenByGebruiker($user_id)
     {
-        return $this->rep->getZorgmomentenByGebruiker($user_id);
+        $today = new \DateTime();
+        $tomorrow = new \DateTime();
+        $tomorrow->modify("+2 days");
+
+        return $this->rep->getZorgmomentenByGebruiker($user_id, $today, $tomorrow);
     }
 
 

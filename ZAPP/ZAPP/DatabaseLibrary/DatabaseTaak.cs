@@ -14,8 +14,8 @@ namespace ZAPP
     {
         private readonly Context context;
         private readonly string connectionString;
-        //private readonly string url = "http://192.168.0.109/zapp/zapp_api/public/index.php/api/taak/update/";
-        private readonly string url = "http://192.168.1.244/zapp/zapp_api/public/index.php/api/taak/update/";
+        private readonly string url = "http://192.168.0.109/zapp/zapp_api/public/index.php/api/taak/update/";
+        //private readonly string url = "http://192.168.1.244/zapp/zapp_api/public/index.php/api/taak/update/";
 
         public DatabaseTaak (Context context)
         {

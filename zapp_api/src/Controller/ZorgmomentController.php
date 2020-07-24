@@ -87,6 +87,7 @@ class ZorgmomentController extends AbstractController
     public function getZorgmomentenByGebruiker($user_id)
     {
         $momenten = $this->zs->getZorgmomentenByGebruiker($user_id);
+        
         $data = [];
 
         foreach ($momenten as $moment)

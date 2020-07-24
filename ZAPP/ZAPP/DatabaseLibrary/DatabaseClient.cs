@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Text;
 using System.IO;
-using System.Net;
-using System.Json;
-using System.Collections;
 using System.Data;
 using Mono.Data.Sqlite;
 using Android.Content;
